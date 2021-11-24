@@ -15,12 +15,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hd2-ag-mQa">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="zhdun" translatesAutoresizingMaskIntoConstraints="NO" id="hd2-ag-mQa">
                         <rect key="frame" x="20" y="52" width="179" height="136"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxK-Sy-bog">
-                        <rect key="frame" x="223" y="16" width="109" height="99"/>
+                        <rect key="frame" x="223" y="14" width="107" height="99"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
@@ -53,10 +53,11 @@
                 <viewLayoutGuide key="safeArea" id="Mpy-gN-FWq"/>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             </view>
-            <point key="canvasLocation" x="144.92753623188406" y="-179.46428571428569"/>
+            <point key="canvasLocation" x="-632" y="-606"/>
         </viewController>
     </objects>
     <resources>
+        <image name="zhdun" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

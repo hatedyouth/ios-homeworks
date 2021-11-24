@@ -8,7 +8,14 @@
 import Foundation
 import UIKit
 
-class ProfileView: UIView {
+class ProfileViev: UIView {
+   
     
     
-    }
+
+
+
+
+
+
+}

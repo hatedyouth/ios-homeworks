@@ -9,15 +9,9 @@ import Foundation
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    @IBOutlet weak var imageZhdun: UIImageView!
-   
-    @IBOutlet weak var labelName: UILabel!
-    
-    @IBOutlet weak var labelBirthdate: UILabel!
-    
-    @IBOutlet weak var labelCity: UILabel!
-    
-    @IBOutlet weak var textDescription: UITextView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
+    }
     
 }

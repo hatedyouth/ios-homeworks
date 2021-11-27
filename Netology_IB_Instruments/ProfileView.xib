@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="0RT-1O-m6G" customClass="ProfileViewController" customModule="Netology_IB_Instruments" customModuleProvider="target">
+        <viewController id="0RT-1O-m6G" customClass="ProfileView">
             <view key="view" contentMode="scaleToFill" id="Ho7-aD-jfp">
                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,13 +54,13 @@
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             </view>
             <connections>
-                <outlet property="imageZhdun" destination="hd2-ag-mQa" id="Sa4-Y9-n52"/>
-                <outlet property="labelBirthdate" destination="z0y-aD-raU" id="Bt1-Lq-Owe"/>
-                <outlet property="labelCity" destination="jhO-Nf-MmJ" id="eV6-xF-fwd"/>
-                <outlet property="labelName" destination="kxK-Sy-bog" id="NjP-ae-dGD"/>
-                <outlet property="textDescription" destination="Tsm-Yo-J2e" id="qkI-Dd-gWP"/>
+                <outlet property="imageZhdun" destination="hd2-ag-mQa" id="Oy3-Mb-kgW"/>
+                <outlet property="labelBirthdate" destination="z0y-aD-raU" id="RUM-oq-v4y"/>
+                <outlet property="labelCity" destination="jhO-Nf-MmJ" id="afa-Sz-HFd"/>
+                <outlet property="labelName" destination="kxK-Sy-bog" id="zvE-sy-yQl"/>
+                <outlet property="textDescription" destination="Tsm-Yo-J2e" id="5Ub-wO-SgT"/>
             </connections>
-            <point key="canvasLocation" x="-1123" y="-612"/>
+            <point key="canvasLocation" x="-799" y="-1136"/>
         </viewController>
     </objects>
     <resources>

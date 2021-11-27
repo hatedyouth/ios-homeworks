@@ -10,12 +10,16 @@ import UIKit
 
 class ProfileViev: UIView {
    
+    @IBOutlet weak var imageZhdun: UIImageView!
     
+    @IBOutlet weak var labelName: UILabel!
     
-
-
-
-
+    @IBOutlet weak var labelBirthdate: UILabel!
+    
+    @IBOutlet weak var labelCity: UILabel!
+    
+    @IBOutlet weak var textDescription: UITextView!
+    
 
 
 }

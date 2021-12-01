@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profile.tabBarItem = profileItem
         
         tabbarController.viewControllers = [navigationController, profile]
-        tabbarController.selectedViewController = feed
+        tabbarController.selectedIndex = 0
         
         window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()

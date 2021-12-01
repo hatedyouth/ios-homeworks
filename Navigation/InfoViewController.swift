@@ -8,12 +8,14 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    
 
     override func viewDidLoad() {
+        view.backgroundColor = .systemPurple
         super.viewDidLoad()
         let button = UIButton()
         button.frame = CGRect(x: self.view.frame.size.width - 230, y: 400, width: 50, height: 50)
-        button.backgroundColor = UIColor.green
+        button.backgroundColor = UIColor.systemPink
         button.setTitle("Alert", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(button)
@@ -23,7 +25,7 @@ class InfoViewController: UIViewController {
         let action1 = UIAlertAction(title: "Ok", style: .default) { (action) in
             print("Message")
         }
-        let action2 = UIAlertAction(title: "Ok", style: .default) { (action) in
+        let action2 = UIAlertAction(title: "Cancel", style: .default) { (action) in
             print("Message")
         }
         alertcontroller.addAction(action1)

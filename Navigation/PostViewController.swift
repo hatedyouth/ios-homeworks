@@ -4,16 +4,19 @@ import UIKit
 
 class PostViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "Посмотреть пост"
-        view.backgroundColor = .systemGray
-        let button = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(openinfo))
-        navigationItem.backBarButtonItem = button
-    
+       view.backgroundColor = .systemGray
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem (barButtonSystemItem: .play, target: self, action: #selector(openinfo))
+        
+       
     
     }
+    
+    
+   
     
     @objc func openinfo() {
         let infoview = InfoViewController()

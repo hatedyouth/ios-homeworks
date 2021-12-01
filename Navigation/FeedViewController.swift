@@ -18,10 +18,10 @@ class FeedViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(button)
     }
-    @objc func buttonAction(sender: UIButton!) {
+    @objc func buttonAction() {
         let postviewcontroller = PostViewController()
         let post: Post = Post(title: "Post")
         postviewcontroller.title = post.title
-        self.navigationController?.pushViewController(postviewcontroller, animated: true)
+        navigationController?.pushViewController(postviewcontroller, animated: true)
     }
 }

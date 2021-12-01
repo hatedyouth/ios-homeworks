@@ -14,6 +14,7 @@
 		660B7DDC275245C20064E0F2 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660B7DDB275245C20064E0F2 /* FeedViewController.swift */; };
 		660B7DDE275245D50064E0F2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660B7DDD275245D50064E0F2 /* ProfileViewController.swift */; };
 		662346A7275569F000F2A093 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662346A6275569F000F2A093 /* PostViewController.swift */; };
+		666CBD542758087A000BF738 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666CBD532758087A000BF738 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		660B7DDB275245C20064E0F2 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		660B7DDD275245D50064E0F2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		662346A6275569F000F2A093 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		666CBD532758087A000BF738 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				660B7DDB275245C20064E0F2 /* FeedViewController.swift */,
 				660B7DDD275245D50064E0F2 /* ProfileViewController.swift */,
 				662346A6275569F000F2A093 /* PostViewController.swift */,
+				666CBD532758087A000BF738 /* InfoViewController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				660B7DDC275245C20064E0F2 /* FeedViewController.swift in Sources */,
 				660B7DDE275245D50064E0F2 /* ProfileViewController.swift in Sources */,
 				660B7DC6275218EE0064E0F2 /* AppDelegate.swift in Sources */,
+				666CBD542758087A000BF738 /* InfoViewController.swift in Sources */,
 				662346A7275569F000F2A093 /* PostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

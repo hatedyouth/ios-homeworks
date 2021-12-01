@@ -7,6 +7,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+   
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
@@ -17,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         feedItem.title = "Лента новостей"
         feedItem.image = UIImage (systemName: "list.dash")
         let feed = FeedViewController()
+        feed.title = "News"
+        let navigationController = UINavigationController (rootViewController: feed)
         feed.tabBarItem = feedItem
         
         
@@ -26,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let profile = ProfileViewController()
         profile.tabBarItem = profileItem
         
-        tabbarController.viewControllers = [feed, profile]
+        tabbarController.viewControllers = [navigationController, profile]
         tabbarController.selectedViewController = feed
         
         window?.rootViewController = tabbarController

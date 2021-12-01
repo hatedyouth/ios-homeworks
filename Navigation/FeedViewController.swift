@@ -8,9 +8,19 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemIndigo
+        
+        let button = UIButton()
+         button.frame = CGRect(x: self.view.frame.size.width - 230, y: 400, width: 50, height: 50)
+         button.backgroundColor = UIColor.brown
+         button.setTitle("Пост", for: .normal)
+         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+         self.view.addSubview(button)
     }
     
-
+    @objc func buttonAction(sender: UIButton!) {
+        let vc = PostViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+     }
    
 
 }

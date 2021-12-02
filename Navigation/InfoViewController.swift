@@ -9,7 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-
+    
     override func viewDidLoad() {
         view.backgroundColor = .systemPurple
         super.viewDidLoad()
@@ -31,8 +31,8 @@ class InfoViewController: UIViewController {
         alertcontroller.addAction(action1)
         alertcontroller.addAction(action2)
         self.present(alertcontroller, animated: true, completion: nil)
-        }
-
+    }
     
-
+    
+    
 }

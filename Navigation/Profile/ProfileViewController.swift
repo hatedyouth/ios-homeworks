@@ -11,7 +11,7 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .lightGray
         navigationController?.navigationBar.backgroundColor = .lightGray
         view.addSubview(profileHeaderView)
-        profileHeaderView.backgroundColor = .gray
+        profileHeaderView.backgroundColor = .systemGray5
     }
     
     

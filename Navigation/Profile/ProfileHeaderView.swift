@@ -71,7 +71,10 @@ class ProfileHeaderView: UIView {
         statusTextField.layer.borderWidth = 1
         statusTextField.layer.borderColor = UIColor.black.cgColor
         statusTextField.layer.cornerRadius = 12
-//        statusTextField.frame = CGRect(x: statusTextField.frame.origin.x+10, y: statusTextField.frame.origin.y, width: statusTextField.frame.size.width, height: statusTextField.frame.size.height)
+        statusTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 9, height: statusTextField.frame.height))
+        statusTextField.leftViewMode = .always
+                                           
+                                           
         addSubview()
     }
     
@@ -124,10 +127,7 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func buttonAction() {
-           //MARK: Задание 1
            print(statusLabel.text ?? "Status button pressed")
-           
-           //MARK: Задание 2
            statusLabel.text = statusTextField.text
        }
        

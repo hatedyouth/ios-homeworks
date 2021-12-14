@@ -33,6 +33,7 @@ class ProfileHeaderView: UIView {
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.borderWidth = 3
         avatarImageView.layer.cornerRadius = 75
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         
         hipsterCatLabel.font =
             UIFont.systemFont(

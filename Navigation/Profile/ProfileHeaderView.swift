@@ -8,6 +8,11 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
+    
+   
+
+    
+    
     let hipsterCatLabel = UILabel()
     let statusLabel = UILabel()
     let statusButton = UIButton()
@@ -25,8 +30,16 @@ class ProfileHeaderView: UIView {
         addSubview(statusTextField)
     }
     
+    
     override init(frame: CGRect){
         super.init (frame: frame)
+        
+        hipsterCatLabel.font =
+            UIFont.systemFont(
+            ofSize: 18,
+            weight: .bold)
+        hipsterCatLabel.text = "Hipster Cat"
+        hipsterCatLabel.translatesAutoresizingMaskIntoConstraints = false
         
         avatarImageView.image = avatar
         avatarImageView.clipsToBounds = true
@@ -35,11 +48,7 @@ class ProfileHeaderView: UIView {
         avatarImageView.layer.cornerRadius = 75
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        hipsterCatLabel.font =
-            UIFont.systemFont(
-            ofSize: 18,
-            weight: .bold)
-        hipsterCatLabel.text = "Hipster Cat"
+        
         
         statusLabel.font =
             UIFont.systemFont(
@@ -47,6 +56,7 @@ class ProfileHeaderView: UIView {
             weight: .regular)
         statusLabel.textColor = .gray
         statusLabel.text = "Waiting for something.."
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
         
         statusButton.layer.cornerRadius = 4
         statusButton.backgroundColor = .blue
@@ -62,6 +72,7 @@ class ProfileHeaderView: UIView {
         statusButton.addTarget(
             self, action: #selector(statusChange),
             for: .editingChanged)
+        statusButton.translatesAutoresizingMaskIntoConstraints = false
         
         statusTextField.font =
             UIFont.systemFont(
@@ -74,10 +85,21 @@ class ProfileHeaderView: UIView {
         statusTextField.layer.cornerRadius = 12
         statusTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 9, height: statusTextField.frame.height))
         statusTextField.leftViewMode = .always
+        statusTextField.translatesAutoresizingMaskIntoConstraints = false
                                            
-                                           
+       
+         
+        
+        
+        
         addSubview()
+        
+        
+    
+    
     }
+    
+   
     
     required init(coder: NSCoder){
         fatalError("init(coder:) has not been implemented")

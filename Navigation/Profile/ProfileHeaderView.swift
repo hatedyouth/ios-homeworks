@@ -8,11 +8,6 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-    
-   
-
-    
-    
     let hipsterCatLabel = UILabel()
     let statusLabel = UILabel()
     let statusButton = UIButton()
@@ -20,7 +15,7 @@ class ProfileHeaderView: UIView {
     let statusTextField = UITextField()
     let avatar = UIImage(named: "cat")
     var statusText : String = ""
-    
+   
     
     func addSubview() {
         addSubview(hipsterCatLabel)
@@ -87,14 +82,8 @@ class ProfileHeaderView: UIView {
         statusTextField.leftViewMode = .always
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
                                            
-       
-         
-        
-        
         
         addSubview()
-        
-        
     
     
     }
@@ -107,47 +96,7 @@ class ProfileHeaderView: UIView {
     
     
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        avatarImageView.frame = CGRect(
-            x: 16,
-            y: safeAreaInsets.top + 16,
-            width: 140,
-            height: 140)
-        
-        hipsterCatLabel.sizeToFit()
-        hipsterCatLabel.frame = CGRect(
-            x: avatarImageView.frame.width + 40,
-            y: safeAreaInsets.top + 27,
-            width: frame.width,
-            height: hipsterCatLabel.frame.height)
-        
-        statusLabel.sizeToFit()
-        statusLabel.frame = CGRect(
-            x: avatarImageView.frame.width + 40,
-            y: hipsterCatLabel.frame.height
-            + safeAreaInsets.top + 90,
-            width: frame.width,
-            height: statusLabel.frame.height)
-        
-        statusButton.frame = CGRect(
-            x: 16,
-            y: 182,
-            width: frame.width - 32,
-            height: 50)
 
-        
-        statusTextField.sizeToFit()
-        statusTextField.frame = CGRect(
-            x: avatarImageView.frame.width + 40,
-            y: hipsterCatLabel.frame.height
-            + safeAreaInsets.top
-            + statusLabel.frame.height
-            + 20 + 75,
-            width: frame.width - 210,
-            height: 40)
-
-    }
     
     @objc func buttonAction() {
            print(statusLabel.text ?? "Status button pressed")

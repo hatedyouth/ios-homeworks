@@ -5,7 +5,15 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     let profileHeaderView = ProfileHeaderView ()
-    let customButton = UIButton()
+    
+    
+    let customButton : UIButton = {
+        let customButton = UIButton()
+        customButton.backgroundColor = .purple
+        customButton.translatesAutoresizingMaskIntoConstraints = false
+        customButton.setTitle("Custom Button", for: .normal)
+        return customButton
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,15 +25,6 @@ class ProfileViewController: UIViewController {
         profileHeaderView.backgroundColor = .systemGray5
         
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        customButton.backgroundColor = .purple
-        customButton.translatesAutoresizingMaskIntoConstraints = false
-        customButton.setTitle("Custom Button", for: .normal)
-        
-        
-        
-        
         
         NSLayoutConstraint.activate([
             profileHeaderView.avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -61,7 +60,7 @@ class ProfileViewController: UIViewController {
             customButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             customButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             customButton.heightAnchor.constraint(equalToConstant: 35)
-        
+            
         ])
         
     }

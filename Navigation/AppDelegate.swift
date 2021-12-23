@@ -7,6 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    
    
            
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -27,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let profileItem = UITabBarItem()
         profileItem.title = "Профиль"
         profileItem.image = UIImage (systemName: "person.fill")
-        let profile = ProfileViewController()
+        let profile = LogInViewController()
         profile.title = "Profile"
         let pfNavigationcontroller = UINavigationController(rootViewController: profile)
         profile.tabBarItem = profileItem
@@ -41,9 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    
-    
-    
 }
+
 

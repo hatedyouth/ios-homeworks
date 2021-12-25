@@ -7,13 +7,11 @@ class LogInViewController: UIViewController {
     fileprivate enum CellReuseIdentifiers: String {
         case loginpassword
     }
-    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.backgroundColor = .white
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
@@ -22,7 +20,7 @@ class LogInViewController: UIViewController {
     private lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .purple
         
         return contentView
     }()
@@ -74,28 +72,39 @@ class LogInViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         
-    
-        view.addSubview(vkImageView)
-        view.addSubview(loginButton)
-        view.addSubview(loginTableView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(vkImageView)
+        contentView.addSubview(loginButton)
+        contentView.addSubview(loginTableView)
         
         NSLayoutConstraint.activate([
-            vkImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            vkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             vkImageView.heightAnchor.constraint(equalToConstant: 100),
             vkImageView.widthAnchor.constraint(equalToConstant: 100),
             
-            vkImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            vkImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-            
-            loginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 456),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            loginButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 456),
+            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
-            
             loginTableView.topAnchor.constraint(equalTo: vkImageView.bottomAnchor, constant: 120),
-            loginTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            loginTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            loginTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            loginTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginTableView.heightAnchor.constraint(equalToConstant: 100)
             
         ])
@@ -107,8 +116,6 @@ class LogInViewController: UIViewController {
             profileViewController,
             animated: true
         )    }
-    
-    
     
 }
 

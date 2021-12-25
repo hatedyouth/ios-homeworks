@@ -23,11 +23,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileHeaderView)
         view.addSubview(customButton)
         
-        
-        
-        
         profileHeaderView.backgroundColor = .systemGray5
-        
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

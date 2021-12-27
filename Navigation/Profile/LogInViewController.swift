@@ -38,7 +38,7 @@ class LogInViewController: UIViewController {
     
     private lazy var  loginButton : UIButton = {
         let uiButton = UIButton()
-        uiButton.translatesAutoresizingMaskIntoConstraints = false
+        uiButton.toAutoLayout()
         uiButton.clipsToBounds = true
         uiButton.layer.cornerRadius = 10
         uiButton.setTitle("Log In", for: .normal)
@@ -52,7 +52,7 @@ class LogInViewController: UIViewController {
     
     private lazy var loginTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.toAutoLayout()
         tableView.layer.cornerRadius = 10
         tableView.layer.borderWidth = 0.5
         tableView.layer.borderColor = UIColor.lightGray.cgColor
@@ -60,6 +60,7 @@ class LogInViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 50
+        tableView.separatorInset = .zero
         tableView.register(TableViewCell.self, forCellReuseIdentifier: CellReuseIdentifiers.loginpassword.rawValue)
         
         return tableView
@@ -76,6 +77,8 @@ class LogInViewController: UIViewController {
         contentView.addSubview(vkImageView)
         contentView.addSubview(loginButton)
         contentView.addSubview(loginTableView)
+        
+        
         
         
         NSLayoutConstraint.activate([

@@ -4,71 +4,70 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let profileHeaderView = ProfileHeaderView ()
     
     
-    let customButton : UIButton = {
-        let customButton = UIButton()
-        customButton.backgroundColor = .purple
-        customButton.translatesAutoresizingMaskIntoConstraints = false
-        customButton.setTitle("Custom Button", for: .normal)
-        return customButton
+    let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.backgroundColor = .white
+        tableView.toAutoLayout()
+        tableView.separatorInset = .zero
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        tableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileTableHeaderView.identifire)
+        return tableView
     }()
+    
+    let profileTableHeaderView: ProfileTableHeaderView = {
+        let profileTableHeaderView = ProfileTableHeaderView()
+        profileTableHeaderView.toAutoLayout()
+        return profileTableHeaderView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        navigationController?.navigationBar.backgroundColor = .lightGray
         
-        view.addSubview(profileHeaderView)
-        view.addSubview(customButton)
+        view.backgroundColor = .white
         
-        profileHeaderView.backgroundColor = .systemGray5
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        //        tableView.tableHeaderView = profileTableHeaderView
+        
         
         NSLayoutConstraint.activate([
-            profileHeaderView.avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profileHeaderView.avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            profileHeaderView.avatarImageView.heightAnchor.constraint(equalToConstant: 140),
-            profileHeaderView.avatarImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 166),
-            
-            profileHeaderView.hipsterCatLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 27),
-            profileHeaderView.hipsterCatLabel.heightAnchor.constraint(equalToConstant: 25),
-            profileHeaderView.hipsterCatLabel.leadingAnchor.constraint(equalTo: profileHeaderView.avatarImageView.trailingAnchor, constant: 40),
-            
-            
-            profileHeaderView.statusButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profileHeaderView.statusButton.bottomAnchor.constraint(equalTo: profileHeaderView.bottomAnchor, constant: -4),
-            profileHeaderView.statusButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            profileHeaderView.statusButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            profileHeaderView.statusLabel.leadingAnchor.constraint(equalTo: profileHeaderView.avatarImageView.trailingAnchor, constant: 40),
-            profileHeaderView.statusLabel.bottomAnchor.constraint(equalTo: profileHeaderView.statusButton.topAnchor, constant: -64),
-            profileHeaderView.statusLabel.heightAnchor.constraint(equalToConstant: 22),
-            
-            profileHeaderView.statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            profileHeaderView.statusTextField.bottomAnchor.constraint(equalTo: profileHeaderView.statusButton.topAnchor, constant: -16),
-            profileHeaderView.statusTextField.leadingAnchor.constraint(equalTo: profileHeaderView.avatarImageView.trailingAnchor, constant: 40),
-            profileHeaderView.statusTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -18),
-            
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            
-            customButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            customButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            customButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            customButton.heightAnchor.constraint(equalToConstant: 35)
-            
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-        
+}
+}
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return postArray.count 
     }
     
-    
-    override func viewWillLayoutSubviews(){
-        super.viewWillLayoutSubviews()
-        profileHeaderView.frame = view.safeAreaLayoutGuide.layoutFrame
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.post = postArray[indexPath.row]
         
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0 {
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileTableHeaderView.identifire) as! ProfileTableHeaderView
+            return headerView
+        } else { return nil }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 250
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
     }
 }

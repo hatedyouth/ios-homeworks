@@ -24,7 +24,7 @@ class TableViewCell: UITableViewCell, UITextFieldDelegate {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(loginTextField)
         
-
+        
         
         
         NSLayoutConstraint.activate([

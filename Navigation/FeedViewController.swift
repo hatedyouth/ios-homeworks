@@ -65,6 +65,8 @@ class FeedViewController: UIViewController {
         let post: Post = Post(title: "Post")
         postviewcontroller.title = post.title
         navigationController?.pushViewController(postviewcontroller, animated: true)
+        print(photosArray.count)
+    
     }
 }
 

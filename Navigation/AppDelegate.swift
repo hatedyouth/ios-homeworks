@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()
         
-        
+        createPhotosArray()
         return true
     }
 }

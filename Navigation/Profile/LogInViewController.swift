@@ -61,6 +61,7 @@ class LogInViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = 50
         tableView.separatorInset = .zero
+        tableView.isScrollEnabled = false
         tableView.register(TableViewCell.self, forCellReuseIdentifier: CellReuseIdentifiers.loginpassword.rawValue)
         
         return tableView

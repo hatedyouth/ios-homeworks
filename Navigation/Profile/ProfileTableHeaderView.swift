@@ -39,6 +39,8 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView{
         statusButton.layer.shadowRadius = 4
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOpacity = 0.7
+        statusButton.layer.shouldRasterize = true
+        statusButton.layer.rasterizationScale = UIScreen.main.scale
         statusButton.addTarget(
             self, action: #selector(buttonAction),
             for: .touchUpInside)
@@ -78,7 +80,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView{
     }()
     
     func addSubviews() {
-        addSubviews (hipsterCatLabel, statusLabel, statusButton, avatarImageView, statusTextField)
+        contentView.addSubviews (hipsterCatLabel, statusLabel, statusButton, avatarImageView, statusTextField)
     }
     
     func setupConstraints() {

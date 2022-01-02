@@ -1,10 +1,11 @@
 import UIKit
 
-class ProfileTableHeaderView: UITableViewHeaderFooterView{
+class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     static let identifire = "ProfileTableHeaderView"
     
     var statusText : String = ""
+//    var profileViewController = ProfileViewController()
     
     let hipsterCatLabel : UILabel = {
         let hipsterCatLabel = UILabel()
@@ -129,9 +130,76 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView{
     @objc func statusChange(_ textField: UITextField){
         statusLabel.text = statusText
     }
+    // animation settings
+    
+
+    var defaultAvatarCenter: CGPoint = CGPoint(x: 0, y: 0)
+    
+    private lazy var animatedView: UIView = {
+        let animatedView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        animatedView.toAutoLayout()
+        animatedView.backgroundColor = .gray
+        animatedView.alpha = 0
+        return animatedView
+    }()
     
     
+    private lazy var animatedButton: UIButton = {
+        let animatedButton = UIButton()
+        animatedButton.toAutoLayout()
+        animatedButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        animatedButton.imageView?.contentMode = .scaleAspectFit
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapButton))
+        animatedButton.addGestureRecognizer(gesture)
+        animatedButton.isUserInteractionEnabled = true
+        animatedButton.alpha = 0
+        return animatedButton
+    }()
     
+    @objc func tapAvatar() {
+        UIImageView.animate(withDuration: 0.5,
+                            animations: {
+            self.defaultAvatarCenter = self.avatarImageView.center
+            self.avatarImageView.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+            self.avatarImageView.transform = CGAffineTransform(scaleX: self.contentView.frame.width / self.avatarImageView.frame.width, y: self.contentView.frame.width / self.avatarImageView.frame.width)
+            self.avatarImageView.layer.cornerRadius = 0
+            self.animatedView.alpha = 0.9
+            ProfileViewController.tableView.isScrollEnabled = false
+            ProfileViewController.tableView.cellForRow(at: IndexPath(item: 0, section: 0))?.isUserInteractionEnabled = false
+            self.avatarImageView.isUserInteractionEnabled = false
+        },
+                            completion: { _ in
+            UIImageView.animate(withDuration: 0.3) {
+                self.animatedButton.alpha = 1
+            }
+        })
+    }
+    
+    
+    @objc func tapButton() {
+        UIImageView.animate(withDuration: 0.3,
+                            animations: {
+            self.animatedButton.alpha = 0
+        },
+                            completion: { _ in
+            UIImageView.animate(withDuration: 0.5) {
+                self.avatarImageView.center = self.defaultAvatarCenter
+                self.avatarImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.width / 2
+                self.animatedView.alpha = 0
+                ProfileViewController.tableView.isScrollEnabled = true
+                ProfileViewController.tableView.cellForRow(at: IndexPath(item: 0, section: 0))?.isUserInteractionEnabled = true
+                self.avatarImageView.isUserInteractionEnabled = true
+            }
+        })
+    }
+    
+
+
+
+
+
+
 }
 
 

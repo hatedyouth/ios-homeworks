@@ -3,9 +3,8 @@ import UIKit
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     static let identifire = "ProfileTableHeaderView"
-    
     var statusText : String = ""
-//    var profileViewController = ProfileViewController()
+
     
     let hipsterCatLabel : UILabel = {
         let hipsterCatLabel = UILabel()
@@ -52,7 +51,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         return statusButton
     }()
     
-    let avatarImageView : UIImageView = {
+    private(set) lazy var avatarImageView : UIImageView = {
         let avatarImageView = UIImageView()
         avatarImageView.image =  UIImage(named: "cat")
         avatarImageView.clipsToBounds = true
@@ -60,6 +59,10 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         avatarImageView.layer.borderWidth = 3
         avatarImageView.layer.cornerRadius = 75
         avatarImageView.toAutoLayout()
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAvatar))
+        avatarImageView.addGestureRecognizer(gesture)
+        avatarImageView.isUserInteractionEnabled = true
+        
         return avatarImageView
     }()
     
@@ -81,7 +84,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }()
     
     func addSubviews() {
-        contentView.addSubviews (hipsterCatLabel, statusLabel, statusButton, avatarImageView, statusTextField)
+        contentView.addSubviews (hipsterCatLabel, statusLabel, statusButton,  statusTextField, animatedView, animatedButton, avatarImageView, animatedButton)
     }
     
     func setupConstraints() {
@@ -109,7 +112,12 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             statusTextField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
             statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18),
-        ])
+        
+            animatedButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            animatedButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            animatedButton.heightAnchor.constraint(equalToConstant: 20),
+            animatedButton.widthAnchor.constraint(equalToConstant: 20)
+         ])
     }
     override init(reuseIdentifier: String?){
         super.init (reuseIdentifier: reuseIdentifier)
@@ -156,6 +164,8 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         return animatedButton
     }()
     
+
+    
     @objc func tapAvatar() {
         UIImageView.animate(withDuration: 0.5,
                             animations: {
@@ -163,7 +173,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             self.avatarImageView.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
             self.avatarImageView.transform = CGAffineTransform(scaleX: self.contentView.frame.width / self.avatarImageView.frame.width, y: self.contentView.frame.width / self.avatarImageView.frame.width)
             self.avatarImageView.layer.cornerRadius = 0
-            self.animatedView.alpha = 0.9
+            self.animatedView.alpha = 0.7
             ProfileViewController.tableView.isScrollEnabled = false
             ProfileViewController.tableView.cellForRow(at: IndexPath(item: 0, section: 0))?.isUserInteractionEnabled = false
             self.avatarImageView.isUserInteractionEnabled = false
@@ -193,13 +203,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             }
         })
     }
-    
-
-
-
-
-
-
 }
 
 

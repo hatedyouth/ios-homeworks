@@ -6,9 +6,6 @@ class FeedViewController: UIViewController {
     struct Post {
         var title:String
     }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5

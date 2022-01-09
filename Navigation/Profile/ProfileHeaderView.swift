@@ -87,27 +87,13 @@ class ProfileHeaderView: UIView {
         statusTextField.leftViewMode = .always
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
                                            
-       
-         
-        
-        
-        
+
         addSubview()
-        
-        
-    
-    
-    }
-    
-   
-    
-    required init(coder: NSCoder){
+  }
+ required init(coder: NSCoder){
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
-    override func layoutSubviews() {
+override func layoutSubviews() {
         super.layoutSubviews()
         avatarImageView.frame = CGRect(
             x: 16,
@@ -140,14 +126,14 @@ class ProfileHeaderView: UIView {
         statusTextField.sizeToFit()
         statusTextField.frame = CGRect(
             x: avatarImageView.frame.width + 40,
-            y: hipsterCatLabel.frame.height
-            + safeAreaInsets.top
-            + statusLabel.frame.height
-            + 20 + 75,
+            y: hipsterCatLabel.frame.height + 110,
+//            y: hipsterCatLabel.frame.height
+//            + safeAreaInsets.top
+//            + statusLabel.frame.height
+//            + 20 + 75,
             width: frame.width - 210,
             height: 40)
-
-    }
+ }
     
     @objc func buttonAction() {
            print(statusLabel.text ?? "Status button pressed")
@@ -157,9 +143,5 @@ class ProfileHeaderView: UIView {
        @objc func statusChange(_ textField: UITextField){
            statusLabel.text = statusText
        }
-
-    
-   
-    
     
 }

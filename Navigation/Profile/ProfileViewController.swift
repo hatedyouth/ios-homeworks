@@ -12,12 +12,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .lightGray
         view.addSubview(profileHeaderView)
         profileHeaderView.backgroundColor = .systemGray5
-        
-//        NSLayoutConstraint.activate([
-//            avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
-//        ])
-    
-    }
+ }
     
     
     override func viewWillLayoutSubviews(){

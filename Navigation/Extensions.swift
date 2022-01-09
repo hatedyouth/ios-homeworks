@@ -1,9 +1,4 @@
-//
-//  Extensions.swift
-//  Navigation
-//
-//  Created by Тимур Турлыкин on 24.12.2021.
-//
+
 
 import Foundation
 import UIKit

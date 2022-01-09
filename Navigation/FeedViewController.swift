@@ -21,7 +21,7 @@ class FeedViewController: UIViewController {
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.toAutoLayout()
         return stackView
         }()
         

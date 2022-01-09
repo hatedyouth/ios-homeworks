@@ -10,7 +10,7 @@ class ProfileViewController: UIViewController {
     let customButton : UIButton = {
         let customButton = UIButton()
         customButton.backgroundColor = .purple
-        customButton.translatesAutoresizingMaskIntoConstraints = false
+        customButton.toAutoLayout()
         customButton.setTitle("Custom Button", for: .normal)
         return customButton
     }()
@@ -20,11 +20,11 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .lightGray
         navigationController?.navigationBar.backgroundColor = .lightGray
         
-        view.addSubview(profileHeaderView)
-        view.addSubview(customButton)
+        view.addSubviews(profileHeaderView,customButton)
+        
         
         profileHeaderView.backgroundColor = .systemGray5
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        profileHeaderView.toAutoLayout()
         
         NSLayoutConstraint.activate([
             profileHeaderView.avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

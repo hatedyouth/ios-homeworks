@@ -18,7 +18,7 @@ class ProfileHeaderView: UIView {
             ofSize: 18,
             weight: .bold)
         hipsterCatLabel.text = "Hipster Cat"
-        hipsterCatLabel.translatesAutoresizingMaskIntoConstraints = false
+        hipsterCatLabel.toAutoLayout()
         return hipsterCatLabel
     }()
     
@@ -30,7 +30,7 @@ class ProfileHeaderView: UIView {
             weight: .regular)
         statusLabel.textColor = .gray
         statusLabel.text = "Waiting for something.."
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusLabel.toAutoLayout()
         return statusLabel
     }()
     
@@ -50,7 +50,7 @@ class ProfileHeaderView: UIView {
         statusButton.addTarget(
             self, action: #selector(statusChange),
             for: .editingChanged)
-        statusButton.translatesAutoresizingMaskIntoConstraints = false
+        statusButton.toAutoLayout()
         return statusButton
     }()
     
@@ -61,7 +61,7 @@ class ProfileHeaderView: UIView {
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.borderWidth = 3
         avatarImageView.layer.cornerRadius = 75
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        avatarImageView.toAutoLayout()
         return avatarImageView
     }()
     
@@ -78,16 +78,13 @@ class ProfileHeaderView: UIView {
         statusTextField.layer.cornerRadius = 12
         statusTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 9, height: statusTextField.frame.height))
         statusTextField.leftViewMode = .always
-        statusTextField.translatesAutoresizingMaskIntoConstraints = false
+        statusTextField.toAutoLayout()
         return statusTextField
     }()
    
    func addSubview() {
-        addSubview(hipsterCatLabel)
-        addSubview(statusLabel)
-        addSubview(statusButton)
-        addSubview(avatarImageView)
-        addSubview(statusTextField)
+        addSubviews(hipsterCatLabel, statusLabel, statusButton,avatarImageView, statusTextField)
+
     }
     
     

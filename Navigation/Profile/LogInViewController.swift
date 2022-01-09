@@ -1,25 +1,19 @@
-
-
 import UIKit
 
-class LogInViewController: UIViewController {
-    
-    fileprivate enum CellReuseIdentifiers: String {
-        case loginpassword
-    }
-    private lazy var scrollView: UIScrollView = {
+class LogInViewController: UIViewController, UITextFieldDelegate {
+
+private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.backgroundColor = .white
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
+        scrollView.toAutoLayout()
         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.toAutoLayout()
         contentView.backgroundColor = .white
         return contentView
     }()
@@ -29,7 +23,7 @@ class LogInViewController: UIViewController {
     private lazy var vkImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.toAutoLayout()
         imageView.clipsToBounds = true
         imageView.image = vkLogo
         
@@ -38,7 +32,7 @@ class LogInViewController: UIViewController {
     
     private lazy var  loginButton : UIButton = {
         let uiButton = UIButton()
-        uiButton.translatesAutoresizingMaskIntoConstraints = false
+        uiButton.toAutoLayout()
         uiButton.clipsToBounds = true
         uiButton.layer.cornerRadius = 10
         uiButton.setTitle("Log In", for: .normal)
@@ -50,20 +44,58 @@ class LogInViewController: UIViewController {
         return uiButton
     }()
     
-    private lazy var loginTableView: UITableView = {
-        let tableView = UITableView(frame: .zero)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.layer.cornerRadius = 10
-        tableView.layer.borderWidth = 0.5
-        tableView.layer.borderColor = UIColor.lightGray.cgColor
-        tableView.backgroundColor = .systemGray6
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = 50
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: CellReuseIdentifiers.loginpassword.rawValue)
-        
-        return tableView
+    
+    private lazy var loginStackView: UIStackView = {
+        let loginStackView = UIStackView()
+        loginStackView.toAutoLayout()
+        loginStackView.axis = .vertical
+        loginStackView.layer.borderColor = UIColor.lightGray.cgColor
+        loginStackView.layer.borderWidth = 0.5
+        loginStackView.layer.cornerRadius = 10
+        loginStackView.distribution = .fillProportionally
+        loginStackView.backgroundColor = .systemGray6
+        loginStackView.clipsToBounds = true
+        return loginStackView
     }()
+    lazy  var loginTextField: UITextField = {
+        let textField = UITextField(frame: .zero)
+        textField.toAutoLayout()
+        textField.backgroundColor = .systemGray6
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 0.25
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 9, height: textField.frame.height))
+        textField.placeholder = "Email or phone"
+        textField.leftViewMode = .always
+        textField.font = .systemFont(ofSize: 16)
+        textField.textColor = .black
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.delegate = self
+        return textField
+    }()
+    
+    lazy  var passwordTextField: UITextField = {
+        let textField = UITextField(frame: .zero)
+        textField.toAutoLayout()
+        textField.backgroundColor = .systemGray6
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 0.25
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 9, height: textField.frame.height))
+        textField.placeholder = "Password"
+        textField.leftViewMode = .always
+        textField.font = .systemFont(ofSize: 16)
+        textField.textColor = .black
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.delegate = self
+        return textField
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,9 +105,9 @@ class LogInViewController: UIViewController {
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(vkImageView)
-        contentView.addSubview(loginButton)
-        contentView.addSubview(loginTableView)
+        contentView.addSubviews(vkImageView, loginStackView, loginButton)
+        loginStackView.addArrangedSubviews(loginTextField, passwordTextField)
+        
         
         
         NSLayoutConstraint.activate([
@@ -86,16 +118,17 @@ class LogInViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             
-            contentView.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            
             
             vkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             vkImageView.heightAnchor.constraint(equalToConstant: 100),
             vkImageView.widthAnchor.constraint(equalToConstant: 100),
-            
             vkImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
             loginButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 456),
@@ -103,16 +136,14 @@ class LogInViewController: UIViewController {
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
-            loginTableView.topAnchor.constraint(equalTo: vkImageView.bottomAnchor, constant: 120),
-            loginTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginTableView.heightAnchor.constraint(equalToConstant: 100)
-            
+            loginStackView.topAnchor.constraint(equalTo: vkImageView.bottomAnchor, constant: 120),
+            loginStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            loginStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            loginStackView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     @objc func buttonAction() {
         let profileViewController = ProfileViewController()
-        //present(profileViewController, animated: true, completion: nil)
         navigationController?.pushViewController(
             profileViewController,
             animated: true
@@ -146,28 +177,5 @@ class LogInViewController: UIViewController {
     }
 }
 
-
-
-
-
-
-extension LogInViewController : UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TableViewCell(style: .default, reuseIdentifier: CellReuseIdentifiers.loginpassword.rawValue)
-        if (indexPath.row == 0) {
-            cell.loginTextField.placeholder = "Email or login";
-        }
-        else {
-            cell.loginTextField.placeholder = "Password";
-            cell.loginTextField.isSecureTextEntry = true
-        }
-        return cell
-    }
-}
 
 

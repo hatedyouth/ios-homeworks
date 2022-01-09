@@ -48,8 +48,7 @@ class FeedViewController: UIViewController {
         return greenButton
         }()
         
-        stackView.addArrangedSubview(blueButton)
-        stackView.addArrangedSubview(greenButton)
+        stackView.addArrangedSubviews(blueButton, greenButton)
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

@@ -1,9 +1,4 @@
-//
-//  Extensions.swift
-//  Navigation
-//
-//  Created by Тимур Турлыкин on 24.12.2021.
-//
+
 
 import Foundation
 import UIKit
@@ -18,3 +13,10 @@ func addSubviews(_ subviews: UIView...) {
     subviews.forEach { addSubview($0) }
 }
 }
+
+public extension UIStackView {
+    func addArrangedSubviews(_ subviews: UIView...) {
+        subviews.forEach { addArrangedSubview($0) }
+           }
+}
+

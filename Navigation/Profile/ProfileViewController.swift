@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        //        tableView.tableHeaderView = profileTableHeaderView
+       
         
         
         NSLayoutConstraint.activate([

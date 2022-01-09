@@ -103,47 +103,55 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        addSubviews()
+        setupConstraints()
         
         
+    }
+    
+    
+    func addSubviews(){
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(vkImageView, loginStackView, loginButton)
         loginStackView.addArrangedSubviews(loginTextField, passwordTextField)
         
         
-        
-        NSLayoutConstraint.activate([
-            
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            
-            
-            vkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
-            vkImageView.heightAnchor.constraint(equalToConstant: 100),
-            vkImageView.widthAnchor.constraint(equalToConstant: 100),
-            vkImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            
-            loginButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 456),
-            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            loginStackView.topAnchor.constraint(equalTo: vkImageView.bottomAnchor, constant: 120),
-            loginStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginStackView.heightAnchor.constraint(equalToConstant: 100)
-        ])
     }
+    func setupConstraints() {
+    NSLayoutConstraint.activate([
+        
+        scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+        scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        
+        
+        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+        contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+        
+        
+        vkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
+        vkImageView.heightAnchor.constraint(equalToConstant: 100),
+        vkImageView.widthAnchor.constraint(equalToConstant: 100),
+        vkImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        
+        loginButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 456),
+        loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+        loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+        loginButton.heightAnchor.constraint(equalToConstant: 50),
+        
+        loginStackView.topAnchor.constraint(equalTo: vkImageView.bottomAnchor, constant: 120),
+        loginStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+        loginStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+        loginStackView.heightAnchor.constraint(equalToConstant: 100)
+    ])}
+    
+    
     @objc func buttonAction() {
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(

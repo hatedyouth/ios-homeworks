@@ -21,7 +21,7 @@ class FeedViewController: UIViewController {
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.toAutoLayout()
         return stackView
         }()
         
@@ -48,8 +48,8 @@ class FeedViewController: UIViewController {
         return greenButton
         }()
         
-        stackView.addArrangedSubview(blueButton)
-        stackView.addArrangedSubview(greenButton)
+        stackView.addArrangedSubviews(blueButton, greenButton)
+        
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

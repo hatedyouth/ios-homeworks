@@ -17,11 +17,7 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-//    let profileTableHeaderView: ProfileTableHeaderView = {
-//        let profileTableHeaderView = ProfileTableHeaderView()
-//        profileTableHeaderView.toAutoLayout()
-//        return profileTableHeaderView
-//    }()
+
     
     
     override func viewDidLoad() {
@@ -32,7 +28,7 @@ class ProfileViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        //        tableView.tableHeaderView = profileTableHeaderView
+       
         
         
         NSLayoutConstraint.activate([

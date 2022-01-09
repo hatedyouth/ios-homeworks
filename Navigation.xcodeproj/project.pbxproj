@@ -85,9 +85,9 @@
 		6694F10E275D35A900FF96B7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				66313FCA276FADB5002EC0CB /* LogInViewController.swift */,
 				660B7DDD275245D50064E0F2 /* ProfileViewController.swift */,
 				662E988F275EA04B00BB84F0 /* ProfileHeaderView.swift */,
-				66313FCA276FADB5002EC0CB /* LogInViewController.swift */,
 				663A08542773A259008E30EC /* LoginTableViewCell.swift */,
 			);
 			path = Profile;

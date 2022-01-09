@@ -16,36 +16,36 @@ class FeedViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .lightGray
         
         let stackView : UIStackView = {
-        let stackView = UIStackView ()
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .center
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+            let stackView = UIStackView ()
+            stackView.axis = .vertical
+            stackView.distribution = .equalSpacing
+            stackView.alignment = .center
+            stackView.spacing = 10
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            return stackView
         }()
         
         
         view.addSubview(stackView)
         
         let blueButton : UIButton = {
-        let blueButton = UIButton()
-        blueButton.backgroundColor = .blue
-        blueButton.setTitle("Пост", for: .normal)
-        blueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        blueButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        blueButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        return blueButton
+            let blueButton = UIButton()
+            blueButton.backgroundColor = .blue
+            blueButton.setTitle("Пост", for: .normal)
+            blueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            blueButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            blueButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            return blueButton
         }()
         
         let greenButton : UIButton = {
-        let greenButton = UIButton()
-        greenButton.backgroundColor = .green
-        greenButton.setTitle("Пост", for: .normal)
-        greenButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        greenButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        greenButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        return greenButton
+            let greenButton = UIButton()
+            greenButton.backgroundColor = .green
+            greenButton.setTitle("Пост", for: .normal)
+            greenButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            greenButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            greenButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            return greenButton
         }()
         
         stackView.addArrangedSubview(blueButton)
@@ -66,7 +66,7 @@ class FeedViewController: UIViewController {
         postviewcontroller.title = post.title
         navigationController?.pushViewController(postviewcontroller, animated: true)
         print(photosArray.count)
-    
+        
     }
 }
 

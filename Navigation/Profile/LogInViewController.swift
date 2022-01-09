@@ -1,9 +1,8 @@
 
-
 import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
-
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -103,15 +102,22 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
+        addSubviews()
+        setupConstraints()
         
         
+    }
+    
+    
+    func addSubviews(){
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(vkImageView, loginStackView, loginButton)
         loginStackView.addArrangedSubviews(loginTextField, passwordTextField)
         
         
-        
+    }
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -142,8 +148,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             loginStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginStackView.heightAnchor.constraint(equalToConstant: 100)
-        ])
-    }
+        ])}
+    
+    
     @objc func buttonAction() {
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(

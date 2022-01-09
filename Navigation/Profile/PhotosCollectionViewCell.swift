@@ -13,7 +13,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     public func configureCell(image: UIImage) {
         self.photoCell.image = image
     }
-
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             photoCell.topAnchor.constraint(equalTo: self.topAnchor),
@@ -36,10 +36,4 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-
-
-
-
-
-
 }

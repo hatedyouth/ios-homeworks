@@ -121,13 +121,4 @@ class PhotosTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

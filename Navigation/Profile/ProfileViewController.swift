@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifire)
         return tableView
     }()
-  override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(ProfileViewController.tableView)
@@ -43,16 +43,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
     
     
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
             return postArray.count
         } else {
             return 1
         }
-
+        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1{
@@ -80,7 +80,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             return 0
         }
     }
-  
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
@@ -88,6 +88,4 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
-    
-    
 }

@@ -65,9 +65,7 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    //    override var reuseIdentifier: String?{
-    //        return "PostTableViewCell"
-    //    }
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -86,7 +84,7 @@ class PostTableViewCell: UITableViewCell {
             authorOfPost.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorOfPost.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             authorOfPost.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            //authorOfPost.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            
             
             postImageView.topAnchor.constraint(equalTo: authorOfPost.bottomAnchor, constant: 12),
             postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),

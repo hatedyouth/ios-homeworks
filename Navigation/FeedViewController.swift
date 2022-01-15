@@ -8,9 +8,7 @@ class FeedViewController: UIViewController {
         var title:String
     }
     
-    
-    
-    override func viewDidLoad() {
+override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
         navigationController?.navigationBar.backgroundColor = .lightGray
@@ -25,8 +23,7 @@ class FeedViewController: UIViewController {
             return stackView
         }()
         
-        
-        view.addSubview(stackView)
+view.addSubview(stackView)
         
         let blueButton : UIButton = {
             let blueButton = UIButton()
@@ -66,7 +63,6 @@ class FeedViewController: UIViewController {
         postviewcontroller.title = post.title
         navigationController?.pushViewController(postviewcontroller, animated: true)
         print(photosArray.count)
-        
     }
 }
 

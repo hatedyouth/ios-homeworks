@@ -9,6 +9,4 @@ struct Post {
     var image: String
     var likes: Int
     var views: Int
-    
-    
 }

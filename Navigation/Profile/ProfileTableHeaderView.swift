@@ -4,7 +4,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     static let identifire = "ProfileTableHeaderView"
     var statusText : String = ""
-
     
     let hipsterCatLabel : UILabel = {
         let hipsterCatLabel = UILabel()
@@ -112,12 +111,12 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             statusTextField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
             statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18),
-        
+            
             animatedButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             animatedButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             animatedButton.heightAnchor.constraint(equalToConstant: 20),
             animatedButton.widthAnchor.constraint(equalToConstant: 20)
-         ])
+        ])
     }
     override init(reuseIdentifier: String?){
         super.init (reuseIdentifier: reuseIdentifier)
@@ -140,7 +139,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }
     // animation settings
     
-
+    
     var defaultAvatarCenter: CGPoint = CGPoint(x: 0, y: 0)
     
     private lazy var animatedView: UIView = {
@@ -150,7 +149,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         animatedView.alpha = 0
         return animatedView
     }()
-    
     
     private lazy var animatedButton: UIButton = {
         let animatedButton = UIButton()
@@ -163,8 +161,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         animatedButton.alpha = 0
         return animatedButton
     }()
-    
-
     
     @objc func tapAvatar() {
         UIImageView.animate(withDuration: 0.5,
@@ -184,7 +180,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             }
         })
     }
-    
     
     @objc func tapButton() {
         UIImageView.animate(withDuration: 0.3,

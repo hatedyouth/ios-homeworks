@@ -14,8 +14,6 @@ class PhotosTableViewCell: UITableViewCell {
         previewStackView.spacing = 8
         return previewStackView
     }()
-    
-    
     private lazy var photosLabel: UILabel = {
         let photosLabel = UILabel()
         photosLabel.text = "Photos"
@@ -40,8 +38,6 @@ class PhotosTableViewCell: UITableViewCell {
         previewImage1.clipsToBounds = true
         return previewImage1
     }()
-    
-    
     private lazy var previewImage2: UIImageView = {
         let previewImage2 = UIImageView()
         previewImage2.image = photosArray[1]
@@ -50,8 +46,6 @@ class PhotosTableViewCell: UITableViewCell {
         previewImage2.clipsToBounds = true
         return previewImage2
     }()
-    
-    
     private lazy var previewImage3: UIImageView = {
         let previewImage3 = UIImageView()
         previewImage3.image = photosArray[2]
@@ -60,8 +54,6 @@ class PhotosTableViewCell: UITableViewCell {
         previewImage3.clipsToBounds = true
         return previewImage3
     }()
-    
-    
     private lazy var previewImage4: UIImageView = {
         let previewImage4 = UIImageView()
         previewImage4.image = photosArray[3]
@@ -70,12 +62,8 @@ class PhotosTableViewCell: UITableViewCell {
         previewImage4.clipsToBounds = true
         return previewImage4
     }()
-    
-    
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            
-            
             previewStackView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
             previewStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             previewStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
@@ -100,20 +88,15 @@ class PhotosTableViewCell: UITableViewCell {
             
             previewImage4.widthAnchor.constraint(greaterThanOrEqualToConstant: (contentView.frame.width - 16) / 4),
             previewImage4.heightAnchor.constraint(equalTo: previewImage2.widthAnchor),
-            
         ])
     }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.toAutoLayout()
         self.selectionStyle = .none
         contentView.addSubviews(photosLabel, arrowImage, previewStackView)
         previewStackView.addArrangedSubviews(previewImage1, previewImage2, previewImage3, previewImage4)
         setupConstraints()
     }
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

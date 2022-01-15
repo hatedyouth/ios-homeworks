@@ -65,21 +65,15 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
         
         contentView.addSubviews(authorOfPost, postImageView, descriptionOfPost, likesOfPost, viewsOfPost)
         
-        
-        
         NSLayoutConstraint.activate([
             
             contentView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            
-            
             
             authorOfPost.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorOfPost.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -104,12 +98,9 @@ class PostTableViewCell: UITableViewCell {
         ])
     }
     
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
     }

@@ -18,14 +18,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         contentView.backgroundColor = .white
         return contentView
     }()
-    
-    let vkLogo = UIImage(named: "vklogo")
-    let bluePixel = UIImage(named: "blue_pixel")
     private lazy var vkImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.toAutoLayout()
         imageView.clipsToBounds = true
+        let vkLogo = UIImage(named: "vklogo")
         imageView.image = vkLogo
         
         return imageView
@@ -38,13 +36,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         uiButton.layer.cornerRadius = 10
         uiButton.setTitle("Log In", for: .normal)
         uiButton.setTitleColor(.white, for: .normal)
+        let bluePixel = UIImage(named: "blue_pixel")
         uiButton.setBackgroundImage(bluePixel, for: UIControl.State.normal )
         uiButton.addTarget(
             self, action: #selector(buttonAction),
             for: .touchUpInside)
         return uiButton
     }()
-    
     
     private lazy var loginStackView: UIStackView = {
         let loginStackView = UIStackView()
@@ -96,26 +94,19 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         addSubviews()
         setupConstraints()
-        
-        
     }
-    
     
     func addSubviews(){
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(vkImageView, loginStackView, loginButton)
         loginStackView.addArrangedSubviews(loginTextField, passwordTextField)
-        
-        
     }
     func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -125,14 +116,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            
             
             vkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             vkImageView.heightAnchor.constraint(equalToConstant: 100),

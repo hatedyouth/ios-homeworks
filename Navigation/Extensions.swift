@@ -2,7 +2,6 @@
 import UIKit
 
 public extension UIImage {
-    
     func image(alpha: CGFloat) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(at: .zero, blendMode: .normal, alpha: alpha)
@@ -10,7 +9,6 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return newImage
     }
-    
     func resizeWithWidth(width: CGFloat) -> UIImage? {
         let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
         imageView.contentMode = .scaleAspectFit
@@ -23,9 +21,7 @@ public extension UIImage {
         return result
     }
 }
-
 public extension UIView {
-    
     func toAutoLayout() {
         translatesAutoresizingMaskIntoConstraints = false
     }
@@ -34,12 +30,9 @@ public extension UIView {
         subviews.forEach { addSubview($0) }
     }
 }
-
-
 public extension UIStackView {
     func addArrangedSubviews(_ subviews: UIView...) {
         subviews.forEach { addArrangedSubview($0) }
         
     }
-    
 }

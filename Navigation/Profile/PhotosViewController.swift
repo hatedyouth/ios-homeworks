@@ -19,7 +19,6 @@ class PhotosViewController: UIViewController {
             photosCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             photosCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             photosCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
         ])
     }
     override func viewDidLoad() {
@@ -30,7 +29,6 @@ class PhotosViewController: UIViewController {
         setupConstraints()
         navigationController?.navigationBar.isHidden = false
         self.title = "Photo Gallery"
-        
     }
 }
 extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
@@ -42,7 +40,6 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photosCollection.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifire, for: indexPath) as! PhotosCollectionViewCell
         cell.configureCell(image: photosArray[indexPath.row])
-        
         return cell
     }
     

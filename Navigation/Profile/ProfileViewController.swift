@@ -3,9 +3,6 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    
-    
     static var  tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .white
@@ -22,9 +19,9 @@ class ProfileViewController: UIViewController {
         view.addSubview(ProfileViewController.tableView)
         ProfileViewController.tableView.dataSource = self
         ProfileViewController.tableView.delegate = self
-        
-        
-        
+        setupConstraints()
+    }
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             ProfileViewController.tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             ProfileViewController.tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -32,7 +29,6 @@ class ProfileViewController: UIViewController {
             ProfileViewController.tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
     }
@@ -80,8 +76,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             return 0
         }
     }
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let photosViewController = PhotosViewController()

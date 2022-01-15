@@ -22,18 +22,15 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             photoCell.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
     }
-    
-    override init(frame: CGRect) {
+   override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(photoCell)
         setupConstraints()
     }
-    
-    required init?(coder: NSCoder) {
+   required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func prepareForReuse() {
+   override func prepareForReuse() {
         super.prepareForReuse()
     }
 }

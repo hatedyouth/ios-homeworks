@@ -1,9 +1,5 @@
 
 import UIKit
-import Foundation
-
-
-import UIKit
 
 var photosArray: [UIImage] = []
 func createPhotosArray() {

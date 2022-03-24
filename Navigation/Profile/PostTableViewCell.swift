@@ -1,12 +1,13 @@
 
 
 import UIKit
+import StorageService
 
-class PostTableViewCell: UITableViewCell {
+ class PostTableViewCell: UITableViewCell {
     
     static let identifier = "PostTableViewCell"
     
-    let authorOfPost: UILabel = {
+    private lazy var authorOfPost: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .black
@@ -17,7 +18,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    let postImageView: UIImageView = {
+    private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .black
@@ -26,7 +27,7 @@ class PostTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    let descriptionOfPost: UILabel = {
+    private lazy var descriptionOfPost: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .systemGray
@@ -37,7 +38,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    let likesOfPost: UILabel = {
+    private lazy var likesOfPost: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
@@ -46,7 +47,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    let viewsOfPost: UILabel = {
+    private lazy var viewsOfPost: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
@@ -101,7 +102,7 @@ class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func prepareForReuse() {
+     override func prepareForReuse() {
         super.prepareForReuse()
     }
 }

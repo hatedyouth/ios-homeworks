@@ -1,7 +1,18 @@
 
-import Foundation
 
-let postArray = [
+import Foundation
+import UIKit
+
+public struct Post {
+    public var author: String
+    public var description: String
+    public var image: String
+    public var likes: Int
+    public var views: Int
+}
+
+
+public let postArray = [
     Post(author: "Cercle du Cinema",
         description: "Хлоя Севиньи и Стив Бушеми",
         image: "chloe",

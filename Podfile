@@ -4,7 +4,9 @@
 target 'Navigation' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
+  pod 'SnapKit'
+  
   # Pods for Navigation
 
 end
@@ -14,7 +16,7 @@ target 'Navigation copy' do
   use_frameworks!
 
   # Pods for Navigation copy
-  pod 'SnapKit'
+  
 
 end
 

@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
@@ -87,36 +88,75 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 140),
-            avatarImageView.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: 166),
+        //        NSLayoutConstraint.activate([
+        //            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+        //            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+        //            avatarImageView.heightAnchor.constraint(equalToConstant: 140),
+        //            avatarImageView.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: 166),
+        //
+        //            hipsterCatLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+        //            hipsterCatLabel.heightAnchor.constraint(equalToConstant: 25),
+        //            hipsterCatLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
+        //
+        //
+        //            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+        //            statusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
+        //            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+        //            statusButton.heightAnchor.constraint(equalToConstant: 50),
+        //
+        //            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
+        //            statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -64),
+        //            statusLabel.heightAnchor.constraint(equalToConstant: 22),
+        //
+        //            statusTextField.heightAnchor.constraint(equalToConstant: 40),
+        //            statusTextField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16),
+        //            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
+        //            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18),
+        //
+        //            animatedButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+        //            animatedButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+        //            animatedButton.heightAnchor.constraint(equalToConstant: 20),
+        //            animatedButton.widthAnchor.constraint(equalToConstant: 20)
+        //        ])
+        avatarImageView.snp.makeConstraints { constraint in
+            constraint.left.top.equalToSuperview().inset(16)
+            constraint.width.height.equalTo(140)
             
-            hipsterCatLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            hipsterCatLabel.heightAnchor.constraint(equalToConstant: 25),
-            hipsterCatLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
+        }
+        
+        hipsterCatLabel.snp.makeConstraints { constraint in
+            constraint.left.equalTo(avatarImageView.snp.right).offset(40)
+            constraint.top.equalToSuperview().inset(27)
+        }
+        
+        statusButton.snp.makeConstraints { constraint in
+            constraint.left.equalTo(self.snp.left).offset(16)
+            constraint.right.equalTo(self.snp.right).offset(-16)
+            constraint.top.equalTo(avatarImageView.snp.bottom).offset(40)
+            constraint.height.equalTo(50)
+        }
+        
+        statusLabel.snp.makeConstraints { constraint in
+            constraint.left.equalTo(avatarImageView.snp.right).offset(40)
+            constraint.bottom.equalTo(statusButton.snp.top).offset(-64)
+            constraint.height.equalTo(22)
+        }
+        
+        statusTextField.snp.makeConstraints { constraint in
+            constraint.left.equalTo(avatarImageView.snp.right).offset(40)
+            constraint.bottom.equalTo(statusButton.snp.top).offset(-16)
+            constraint.right.greaterThanOrEqualTo(contentView.snp.right).offset(-18)
+            constraint.height.equalTo(40)
+        }
+        
+        animatedButton.snp.makeConstraints { constraint in
+            constraint.top.equalTo(contentView.snp.top).offset(16)
+            constraint.right.equalTo(contentView.snp.right).offset(-16)
+            constraint.width.height.equalTo(20)
             
-            
-            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            statusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
-            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            statusButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
-            statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -64),
-            statusLabel.heightAnchor.constraint(equalToConstant: 22),
-            
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            statusTextField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16),
-            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
-            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18),
-            
-            animatedButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            animatedButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            animatedButton.heightAnchor.constraint(equalToConstant: 20),
-            animatedButton.widthAnchor.constraint(equalToConstant: 20)
-        ])
+        }
+        
+        
     }
     override init(reuseIdentifier: String?){
         super.init (reuseIdentifier: reuseIdentifier)

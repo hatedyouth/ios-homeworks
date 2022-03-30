@@ -2,6 +2,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
  class PostTableViewCell: UITableViewCell {
     
@@ -56,15 +57,15 @@ import StorageService
         return label
     }()
     
-    var post: Post? {
-        didSet {
-            authorOfPost.text = post?.author
-            postImageView.image = UIImage(named: post!.image)
-            descriptionOfPost.text = post?.description
-            likesOfPost.text = "Likes: \(post?.likes ?? 0)"
-            viewsOfPost.text = "Views: \(post?.views ?? 0)"
-        }
-    }
+//    var post: Post? {
+//        didSet {
+//            authorOfPost.text = post?.author
+//            postImageView.image = UIImage(named: post!.image)
+//            descriptionOfPost.text = post?.description
+//            likesOfPost.text = "Likes: \(post?.likes ?? 0)"
+//            viewsOfPost.text = "Views: \(post?.views ?? 0)"
+//        }
+//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -107,4 +108,44 @@ import StorageService
     }
 }
 
+extension PostTableViewCell {
+    
+    
+    public func configureCell(title: String, image: String, description: String, likes: Int, views: Int) {
+        self.authorOfPost.text = title
+        self.postImageView.image = UIImage(named: image)
+        self.descriptionOfPost.text = description
+        self.likesOfPost.text = "Likes: \(likes)"
+        self.viewsOfPost.text = "Views: \(views)"
+        
+        
+        
+        let randomInt = Int.random(in: 1...8)
+        let filter: ColorFilter?
+
+        switch randomInt {
+        case 1: filter = .posterize
+        case 2: filter = .colorInvert
+        case 3: filter = .transfer
+        case 4: filter = .noir
+        case 5: filter = .tonal
+        case 6: filter = .process
+        case 7: filter = .chrome
+        case 8: filter = .fade
+        default: filter = nil
+        }
+
+        let processor = ImageProcessor()
+        guard let filter = filter else { return }
+        guard let image = postImageView.image else { return }
+
+        processor.processImage(sourceImage: image, filter: filter) { filteredImage in
+            postImageView.image = filteredImage
+        }
+
+        print("К изображению поста \(String(describing: authorOfPost.text)) применен фильтр \(filter)")
+
+        
+    }
+}
 

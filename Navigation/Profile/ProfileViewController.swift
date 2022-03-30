@@ -62,7 +62,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1{
             let cell = ProfileViewController.tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-            cell.post = postArray[indexPath.row]
+            cell.configureCell(title: postArray[indexPath.row].author,
+                               image: postArray[indexPath.row].image,
+                               description: postArray[indexPath.row].description,
+                               likes: postArray[indexPath.row].likes,
+                               views: postArray[indexPath.row].views)
             return cell
         } else {
             let cell = ProfileViewController.tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifire, for: indexPath) as! PhotosTableViewCell

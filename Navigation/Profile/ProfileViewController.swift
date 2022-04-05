@@ -5,7 +5,21 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
-   static var  tableView: UITableView = {
+    var userService: UserService
+    
+    var userFullName: String?
+    
+    init(userService: UserService, fullUserName: String) {
+        self.userService = userService
+        self.userFullName = fullUserName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    static var  tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .white
         tableView.toAutoLayout()
@@ -18,13 +32,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        #if DEBUG
         view.backgroundColor = .white
-        #else
-        view.backgroundColor = .lightGray
-        #endif
         
-        //        view.backgroundColor = .white
+        
         view.addSubview(ProfileViewController.tableView)
         ProfileViewController.tableView.dataSource = self
         ProfileViewController.tableView.delegate = self
@@ -78,6 +88,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         if section == 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileTableHeaderView.identifire) as! ProfileTableHeaderView
+            let currentUser = userService.getUser(userFullName: userFullName!)
+            headerView.hipsterCatLabel.text = currentUser?.userFullName
+            headerView.avatarImageView.image = currentUser?.userAvatar
+            headerView.statusLabel.text = currentUser?.userStatus
+            
             return headerView
         } else { return nil }
     }

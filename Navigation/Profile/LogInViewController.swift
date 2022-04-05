@@ -3,6 +3,9 @@ import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
+    var isLogin: Bool = false
+    
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -141,11 +144,64 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     
     @objc func buttonAction() {
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(
-            profileViewController,
-            animated: true
-        )    }
+        if let image = UIImage(named: "blue_pixel") {
+            loginButton.setBackgroundImage(image.image(alpha: 0.8), for: .normal)
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+                self.loginButton.setBackgroundImage(image.image(alpha: 1), for: .normal)
+            }
+        }
+#if DEBUG
+        
+        let currentUserService = TestUserService()
+        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
+        profileVC.userService = currentUserService
+        if loginTextField.text == currentUserService.user.userFullName {
+            isLogin = true
+            navigationController?.pushViewController(profileVC, animated: false)
+        } else {
+            let alert = UIAlertController(title: "DEBUG mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        #else
+        
+        let currentUserService = CurrentUserService()
+        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
+        profileVC.userService = currentUserService
+        if loginTextField.text == currentUserService.user.userFullName {
+            isLogin = true
+            navigationController?.pushViewController(profileVC, animated: false)
+        } else {
+            let alert = UIAlertController(title: "RELEASE mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        #endif
+        
+        if isLogin {
+            navigationController?.setViewControllers([profileVC], animated: true)
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //        let profileViewController = ProfileViewController()
+        //        navigationController?.pushViewController(
+        //            profileViewController,
+        //            animated: true
+        //        )
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

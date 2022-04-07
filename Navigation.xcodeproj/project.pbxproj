@@ -46,6 +46,8 @@
 		665CD25627ECFBF300F2E1BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660B7DD0275218EE0064E0F2 /* LaunchScreen.storyboard */; };
 		665CD25727ECFBF300F2E1BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 660B7DCE275218EE0064E0F2 /* Assets.xcassets */; };
 		665CD25927ECFBF300F2E1BC /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 665CD23427ECEC9900F2E1BC /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6661E02A27FF71AB0049C833 /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6661E02927FF71AB0049C833 /* LoginChecker.swift */; };
+		6661E02C27FF72020049C833 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6661E02B27FF72020049C833 /* LoginViewControllerDelegate.swift */; };
 		666CBD542758087A000BF738 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666CBD532758087A000BF738 /* InfoViewController.swift */; };
 		666D8EFD27FCBC4F0032165D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D8EFC27FCBC4F0032165D /* User.swift */; };
 		666D8EFF27FCBCC20032165D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D8EFE27FCBCC20032165D /* UserService.swift */; };
@@ -122,6 +124,8 @@
 		665CD23C27ECEC9900F2E1BC /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		665CD25D27ECFBF300F2E1BC /* Navigation copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Navigation copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		665CD25E27ECFBF300F2E1BC /* Navigation copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Navigation copy-Info.plist"; path = "/Users/timurturlykin/Desktop/netology/Navigation/ios-homeworks/Navigation copy-Info.plist"; sourceTree = "<absolute>"; };
+		6661E02927FF71AB0049C833 /* LoginChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginChecker.swift; sourceTree = "<group>"; };
+		6661E02B27FF72020049C833 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		666CBD532758087A000BF738 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		666D8EFC27FCBC4F0032165D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		666D8EFE27FCBCC20032165D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 		660B7DC4275218EE0064E0F2 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				6661E02827FF718F0049C833 /* Login */,
 				666D8F0027FCBD770032165D /* User */,
 				6694F10E275D35A900FF96B7 /* Profile */,
 				660B7DC5275218EE0064E0F2 /* AppDelegate.swift */,
@@ -222,6 +227,16 @@
 			path = StorageService;
 			sourceTree = "<group>";
 		};
+		6661E02827FF718F0049C833 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				66313FCA276FADB5002EC0CB /* LogInViewController.swift */,
+				6661E02927FF71AB0049C833 /* LoginChecker.swift */,
+				6661E02B27FF72020049C833 /* LoginViewControllerDelegate.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		666D8F0027FCBD770032165D /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,7 +251,6 @@
 		6694F10E275D35A900FF96B7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				66313FCA276FADB5002EC0CB /* LogInViewController.swift */,
 				660B7DDD275245D50064E0F2 /* ProfileViewController.swift */,
 				66171A9527788C45009CD409 /* ProfileTableHeaderView.swift */,
 				66171A9727789B13009CD409 /* PostTableViewCell.swift */,
@@ -494,10 +508,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				666D8F0227FCC4510032165D /* CurrentUserService.swift in Sources */,
+				6661E02C27FF72020049C833 /* LoginViewControllerDelegate.swift in Sources */,
 				660B7DCA275218EE0064E0F2 /* ViewController.swift in Sources */,
 				66250302277BC143002AF96E /* PhotosViewController.swift in Sources */,
 				66171A9627788C45009CD409 /* ProfileTableHeaderView.swift in Sources */,
 				660B7DDC275245C20064E0F2 /* FeedViewController.swift in Sources */,
+				6661E02A27FF71AB0049C833 /* LoginChecker.swift in Sources */,
 				660B7DDE275245D50064E0F2 /* ProfileViewController.swift in Sources */,
 				662502FE277BA197002AF96E /* PhotosTableViewCell.swift in Sources */,
 				660B7DC6275218EE0064E0F2 /* AppDelegate.swift in Sources */,

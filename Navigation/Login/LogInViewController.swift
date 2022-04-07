@@ -4,6 +4,7 @@ import UIKit
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
     var isLogin: Bool = false
+    var delegate: LoginViewControllerDelegate?
     
     
     private lazy var scrollView: UIScrollView = {

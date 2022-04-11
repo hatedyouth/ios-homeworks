@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController (rootViewController: feed)
         feed.tabBarItem = feedItem
         
-        
         let profileItem = UITabBarItem()
         profileItem.title = "Профиль"
         profileItem.image = UIImage (systemName: "person.fill")

@@ -7,9 +7,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
-   
-           
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
@@ -28,13 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let profileItem = UITabBarItem()
         profileItem.title = "Профиль"
         profileItem.image = UIImage (systemName: "person.fill")
-        let profile = LogInViewController()
+        let profile = LoginViewController()
         profile.title = "Profile"
         let pfNavigationcontroller = UINavigationController(rootViewController: profile)
         profile.tabBarItem = profileItem
         
         tabbarController.viewControllers = [navigationController, pfNavigationcontroller]
         tabbarController.selectedIndex = 0
+        
+        let loginVC = LoginViewController()
+        let factory = MyLoginFactory()
+        let inspector = factory.createLoginInspector()
+        loginVC.delegate = inspector
         
         window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()

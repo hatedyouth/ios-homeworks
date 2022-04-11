@@ -13,13 +13,12 @@ class LoginChecker {
     private let password = "timur"
     static let shared = LoginChecker()
     
-    func check(login: Int, password: Int) -> (login: Int, password: Int) {
-        if login == self.login.hash && password == self.password.hash {
-            print("Данные верны.")
-            return (self.login.hash, self.password.hash)
+    func check(login: String, password: String) -> Bool {
+        if login.hash == self.login.hash && password.hash == self.password.hash {
+            return true
         }
         else {
-            return (0, 0)
+            return false
         }
     }
 }

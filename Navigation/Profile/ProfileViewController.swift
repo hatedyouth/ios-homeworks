@@ -5,19 +5,19 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
-    var userService: UserService
+    //    var userService: UserService
+    //    var userFullName: String?
+    var login: String?
     
-    var userFullName: String?
+    //    init(userService: UserService, fullUserName: String) {
+    //        self.userService = userService
+    //        self.userFullName = fullUserName
+    //        super.init(nibName: nil, bundle: nil)
+    //    }
     
-    init(userService: UserService, fullUserName: String) {
-        self.userService = userService
-        self.userFullName = fullUserName
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     static var  tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -88,12 +88,18 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         if section == 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileTableHeaderView.identifire) as! ProfileTableHeaderView
-            let currentUser = userService.getUser(userFullName: userFullName!)
-            headerView.hipsterCatLabel.text = currentUser?.userFullName
-            headerView.avatarImageView.image = currentUser?.userAvatar
-            headerView.statusLabel.text = currentUser?.userStatus
             
             return headerView
+            
+            
+            
+            //            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileTableHeaderView.identifire) as! ProfileTableHeaderView
+            //            let currentUser = userService.getUser(userFullName: userFullName!)
+            //            headerView.hipsterCatLabel.text = currentUser?.userFullName
+            //            headerView.avatarImageView.image = currentUser?.userAvatar
+            //            headerView.statusLabel.text = currentUser?.userStatus
+            
+            
         } else { return nil }
     }
     

@@ -1,7 +1,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var isLogin: Bool = false
     var delegate: LoginViewControllerDelegate?
@@ -151,41 +151,38 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 self.loginButton.setBackgroundImage(image.image(alpha: 1), for: .normal)
             }
         }
-#if DEBUG
         
-        let currentUserService = TestUserService()
-        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
-        profileVC.userService = currentUserService
-        if loginTextField.text == currentUserService.user.userFullName {
+        guard loginTextField.text?.isEmpty == false else {
+            let alertVC = UIAlertController(title: "Error", message: "Enter Login!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+            return }
+        
+        guard passwordTextField.text?.isEmpty == false else {
+            let alertVC = UIAlertController(title: "Error", message: "Enter Password!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+            return }
+        
+        guard let login = loginTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let delegate = delegate else { return }
+        let result = delegate.check(login: login, password: password)
+        
+        
+        
+        if result {
             isLogin = true
+            let profileVC = ProfileViewController()
             navigationController?.pushViewController(profileVC, animated: false)
         } else {
-            let alert = UIAlertController(title: "DEBUG mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-        #else
-        
-        let currentUserService = CurrentUserService()
-        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
-        profileVC.userService = currentUserService
-        if loginTextField.text == currentUserService.user.userFullName {
-            isLogin = true
-            navigationController?.pushViewController(profileVC, animated: false)
-        } else {
-            let alert = UIAlertController(title: "RELEASE mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-        
-        #endif
-        
-        if isLogin {
-            navigationController?.setViewControllers([profileVC], animated: true)
+            isLogin = false
+            let alertVC = UIAlertController(title: "Ошибка", message: "Такого пользователя не существует", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
         }
         
         
@@ -193,14 +190,43 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         
         
+        //#if DEBUG
+        //
+        //        let currentUserService = TestUserService()
+        //        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
+        //        profileVC.userService = currentUserService
+        //        if loginTextField.text == currentUserService.user.userFullName {
+        //            isLogin = true
+        //            navigationController?.pushViewController(profileVC, animated: false)
+        //        } else {
+        //            let alert = UIAlertController(title: "DEBUG mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
+        //            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+        //                NSLog("The \"OK\" alert occured.")
+        //            }))
+        //            self.present(alert, animated: true, completion: nil)
+        //        }
+        //        #else
+        //
+        //        let currentUserService = CurrentUserService()
+        //        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
+        //        profileVC.userService = currentUserService
+        //        if loginTextField.text == currentUserService.user.userFullName {
+        //            isLogin = true
+        //            navigationController?.pushViewController(profileVC, animated: false)
+        //        } else {
+        //            let alert = UIAlertController(title: "RELEASE mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
+        //            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+        //                NSLog("The \"OK\" alert occured.")
+        //            }))
+        //            self.present(alert, animated: true, completion: nil)
+        //        }
+        //
+        //        #endif
+        //
+        //        if isLogin {
+        //            navigationController?.setViewControllers([profileVC], animated: true)
+        //        }
         
-        
-        
-        //        let profileViewController = ProfileViewController()
-        //        navigationController?.pushViewController(
-        //            profileViewController,
-        //            animated: true
-        //        )
         
     }
     

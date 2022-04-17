@@ -169,6 +169,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let login = loginTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let delegate = delegate else { return }
+        
+       
+        
         let result = delegate.check(login: login, password: password)
         
         

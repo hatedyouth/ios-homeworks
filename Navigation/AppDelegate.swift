@@ -32,10 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabbarController.viewControllers = [navigationController, pfNavigationcontroller]
         tabbarController.selectedIndex = 0
         
-        let loginVC = LoginViewController()
         let factory = MyLoginFactory()
         let inspector = factory.createLoginInspector()
-        loginVC.delegate = inspector
+        profile.delegate = inspector
         
         window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()

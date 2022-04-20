@@ -9,8 +9,8 @@ import UIKit
 
 class LoginChecker {
     
-    private let login = "timur"
-    private let password = "timur"
+    private let login = "t"
+    private let password = "t"
     static let shared = LoginChecker()
     
     func check(login: String, password: String) -> Bool {

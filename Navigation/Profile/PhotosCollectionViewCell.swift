@@ -1,4 +1,5 @@
 import UIKit
+import iOSIntPackage
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     

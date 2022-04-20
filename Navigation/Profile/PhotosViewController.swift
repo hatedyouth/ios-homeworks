@@ -1,6 +1,10 @@
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+    
+    var newPhotoArray: [UIImage] = []
+    let facade = ImagePublisherFacade()
     
     private lazy var photosCollection: UICollectionView = {
         let photoCollectionLayout = UICollectionViewFlowLayout()
@@ -29,17 +33,29 @@ class PhotosViewController: UIViewController {
         setupConstraints()
         navigationController?.navigationBar.isHidden = false
         self.title = "Photo Gallery"
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: NSNotification.Name("notification"), object: nil)
+        self.receive(images: Images)
+        facade.subscribe(self)
+        facade.addImagesWithTimer(time: 0.4, repeat: 20, userImages: photosArray)
+    }
+    
+    deinit {
+        facade.rechargeImageLibrary()
+    }
+    
+    @objc private func reloadTable() {
+        self.photosCollection.reloadData()
     }
 }
 extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosArray.count
+        return newPhotoArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photosCollection.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifire, for: indexPath) as! PhotosCollectionViewCell
-        cell.configureCell(image: photosArray[indexPath.row])
+        cell.configureCell(image: newPhotoArray[indexPath.item])
         return cell
     }
     
@@ -61,5 +77,15 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        newPhotoArray = []
+        for image in images {
+            newPhotoArray.append(image)
+        }
+        photosCollection.reloadData()
     }
 }

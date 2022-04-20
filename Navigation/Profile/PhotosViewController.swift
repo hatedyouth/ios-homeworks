@@ -34,9 +34,9 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         self.title = "Photo Gallery"
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: NSNotification.Name("notification"), object: nil)
-        self.receive(images: Images)
+    
         facade.subscribe(self)
-        facade.addImagesWithTimer(time: 0.4, repeat: 20, userImages: photosArray)
+        facade.addImagesWithTimer(time: 0.3, repeat: 20, userImages: photosArray)
     }
     
     deinit {

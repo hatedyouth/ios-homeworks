@@ -21,6 +21,9 @@ final class CustomButton : UIButton {
         self.setTitleColor(titleColor, for: .normal)
         self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         self.toAutoLayout()
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 0.5
+        self.setTitleColor(UIColor.cyan, for: .highlighted)
         
     }
     @objc private func buttonTapped() {

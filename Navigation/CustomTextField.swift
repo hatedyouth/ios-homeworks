@@ -28,6 +28,8 @@ final class CustomTextField: UITextField {
         self.leftViewMode = .always
         self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 9, height: self.frame.height))
         self.rightViewMode = .always
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 0.5
     
     }
 

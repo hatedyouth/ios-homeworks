@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 final class NewCustomButton: UIButton {
-
+    
     var buttonTap: () -> Void
-
+    
     init(buttonTap: @escaping () -> Void) {
         self.buttonTap = buttonTap
         super.init(frame: .zero)
@@ -22,15 +22,16 @@ final class NewCustomButton: UIButton {
         self.layer.shadowColor = UIColor.black.cgColor
         self.setTitle(" Check Password ", for: .normal)
         self.setTitleColor(.black, for: .normal)
-        
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 1
+        self.setTitleColor(UIColor.cyan, for: .highlighted)
     }
-
+    
     required init?(coder: NSCoder) {
         nil
     }
-
-    @objc
-    private func tapForCheck() {
+    
+    @objc private func tapForCheck() {
         self.buttonTap()
         if Model.shared.gettingPassword != "" {
             Model.shared.check()

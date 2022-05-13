@@ -36,10 +36,8 @@
 		665CD24A27ECFBF300F2E1BC /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662502FD277BA197002AF96E /* PhotosTableViewCell.swift */; };
 		665CD24B27ECFBF300F2E1BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660B7DC5275218EE0064E0F2 /* AppDelegate.swift */; };
 		665CD24C27ECFBF300F2E1BC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66313FCA276FADB5002EC0CB /* LoginViewController.swift */; };
-		665CD24D27ECFBF300F2E1BC /* PhotosArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662502FF277BA5B5002AF96E /* PhotosArray.swift */; };
 		665CD24E27ECFBF300F2E1BC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66171A9727789B13009CD409 /* PostTableViewCell.swift */; };
 		665CD24F27ECFBF300F2E1BC /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66250303277BC53A002AF96E /* PhotosCollectionViewCell.swift */; };
-		665CD25027ECFBF300F2E1BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6620ACD12776583900B31A9A /* Extensions.swift */; };
 		665CD25127ECFBF300F2E1BC /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666CBD532758087A000BF738 /* InfoViewController.swift */; };
 		665CD25227ECFBF300F2E1BC /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662346A6275569F000F2A093 /* PostViewController.swift */; };
 		665CD25427ECFBF300F2E1BC /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 665CD23427ECEC9900F2E1BC /* StorageService.framework */; };
@@ -60,6 +58,8 @@
 		668197872817322800C586CD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668197862817322800C586CD /* CustomTextField.swift */; };
 		66819789281733E600C586CD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66819788281733E600C586CD /* Model.swift */; };
 		6681978B281734EC00C586CD /* NewCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681978A281734EC00C586CD /* NewCustomButton.swift */; };
+		66977793282D9E3A001726FA /* Brutforce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66977792282D9E3A001726FA /* Brutforce.swift */; };
+		66977795282DA206001726FA /* GeneratePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66977794282DA206001726FA /* GeneratePassword.swift */; };
 		A4A04EDFBFD846FD47B3E6F6 /* Pods_Navigation_copy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE9CFEFD18E6ACE33D5E852 /* Pods_Navigation_copy.framework */; };
 		B12CF5F683FE46AFD318E33C /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923A12294A251C00FDAB5BA0 /* Pods_StorageService.framework */; };
 /* End PBXBuildFile section */
@@ -145,6 +145,8 @@
 		668197862817322800C586CD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		66819788281733E600C586CD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6681978A281734EC00C586CD /* NewCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCustomButton.swift; sourceTree = "<group>"; };
+		66977792282D9E3A001726FA /* Brutforce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brutforce.swift; sourceTree = "<group>"; };
+		66977794282DA206001726FA /* GeneratePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratePassword.swift; sourceTree = "<group>"; };
 		66E2A573770EA19A5FF73F1A /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		84A44E45DBC5F5027719596B /* Pods-Navigation copy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation copy.release.xcconfig"; path = "Target Support Files/Pods-Navigation copy/Pods-Navigation copy.release.xcconfig"; sourceTree = "<group>"; };
 		899E8BA5E57509D2434AF854 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		660B7DC4275218EE0064E0F2 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				66977791282D9DFF001726FA /* Support Files */,
 				6661E02827FF718F0049C833 /* Login */,
 				666D8F0027FCBD770032165D /* User */,
 				6694F10E275D35A900FF96B7 /* Profile */,
@@ -225,12 +228,7 @@
 				660B7DDB275245C20064E0F2 /* FeedViewController.swift */,
 				662346A6275569F000F2A093 /* PostViewController.swift */,
 				666CBD532758087A000BF738 /* InfoViewController.swift */,
-				6620ACD12776583900B31A9A /* Extensions.swift */,
-				662502FF277BA5B5002AF96E /* PhotosArray.swift */,
 				660B7DD3275218EE0064E0F2 /* Info.plist */,
-				666955CD28133EB30029AE72 /* CustomButton.swift */,
-				6681978A281734EC00C586CD /* NewCustomButton.swift */,
-				668197862817322800C586CD /* CustomTextField.swift */,
 				66819788281733E600C586CD /* Model.swift */,
 			);
 			path = Navigation;
@@ -280,6 +278,20 @@
 				66250303277BC53A002AF96E /* PhotosCollectionViewCell.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		66977791282D9DFF001726FA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				66977792282D9E3A001726FA /* Brutforce.swift */,
+				66977794282DA206001726FA /* GeneratePassword.swift */,
+				662502FF277BA5B5002AF96E /* PhotosArray.swift */,
+				6620ACD12776583900B31A9A /* Extensions.swift */,
+				666955CD28133EB30029AE72 /* CustomButton.swift */,
+				6681978A281734EC00C586CD /* NewCustomButton.swift */,
+				668197862817322800C586CD /* CustomTextField.swift */,
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 		B18B8C860E01FB3F12606F25 /* Frameworks */ = {
@@ -554,6 +566,8 @@
 				666D8EFF27FCBCC20032165D /* UserService.swift in Sources */,
 				6620ACD22776583900B31A9A /* Extensions.swift in Sources */,
 				666CBD542758087A000BF738 /* InfoViewController.swift in Sources */,
+				66977795282DA206001726FA /* GeneratePassword.swift in Sources */,
+				66977793282D9E3A001726FA /* Brutforce.swift in Sources */,
 				662346A7275569F000F2A093 /* PostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,10 +592,8 @@
 				665CD24A27ECFBF300F2E1BC /* PhotosTableViewCell.swift in Sources */,
 				665CD24B27ECFBF300F2E1BC /* AppDelegate.swift in Sources */,
 				665CD24C27ECFBF300F2E1BC /* LoginViewController.swift in Sources */,
-				665CD24D27ECFBF300F2E1BC /* PhotosArray.swift in Sources */,
 				665CD24E27ECFBF300F2E1BC /* PostTableViewCell.swift in Sources */,
 				665CD24F27ECFBF300F2E1BC /* PhotosCollectionViewCell.swift in Sources */,
-				665CD25027ECFBF300F2E1BC /* Extensions.swift in Sources */,
 				665CD25127ECFBF300F2E1BC /* InfoViewController.swift in Sources */,
 				665CD25227ECFBF300F2E1BC /* PostViewController.swift in Sources */,
 			);

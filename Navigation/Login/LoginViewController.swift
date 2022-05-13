@@ -6,8 +6,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var isLogin: Bool = false
     var delegate: LoginViewControllerDelegate?
     
+    private lazy var brutPasswordButton: UIButton = {
+        let brutPasswordButton = UIButton()
+        brutPasswordButton.toAutoLayout()
+        if let image = UIImage(named: "blue_pixel") {
+            brutPasswordButton.setBackgroundImage(image.image(alpha: 1), for: .normal)
+            brutPasswordButton.setBackgroundImage(image.image(alpha: 0.8), for: .selected)
+            brutPasswordButton.setBackgroundImage(image.image(alpha: 0.8), for: .highlighted)
+            brutPasswordButton.setBackgroundImage(image.image(alpha: 0.8), for: .disabled)
+        }
+        brutPasswordButton.setTitle("Подобрать пароль", for: .normal)
+        brutPasswordButton.setTitleColor(.white, for: .normal)
+        brutPasswordButton.addTarget(self, action: #selector(brutPasswordButtonPressed), for: .touchUpInside)
+        brutPasswordButton.layer.cornerRadius = 10
+        brutPasswordButton.clipsToBounds = true
+        return brutPasswordButton
+    }()
     
-    private lazy var scrollView: UIScrollView = {
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.toAutoLayout()
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        return activityIndicator
+    }()
+    
+   private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -109,7 +132,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func addSubviews(){
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(vkImageView, loginStackView, loginButton)
+        contentView.addSubviews(vkImageView, loginStackView, loginButton, brutPasswordButton, activityIndicator)
         loginStackView.addArrangedSubviews(loginTextField, passwordTextField)
     }
     func setupConstraints() {
@@ -140,7 +163,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             loginStackView.topAnchor.constraint(equalTo: vkImageView.bottomAnchor, constant: 120),
             loginStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginStackView.heightAnchor.constraint(equalToConstant: 100)
+            loginStackView.heightAnchor.constraint(equalToConstant: 100),
+            
+            brutPasswordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            brutPasswordButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            brutPasswordButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            brutPasswordButton.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicator.centerXAnchor.constraint(equalTo: brutPasswordButton.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: brutPasswordButton.centerYAnchor),
+            
         ])}
     
     
@@ -170,11 +201,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let password = passwordTextField.text else { return }
         guard let delegate = delegate else { return }
         
-       
-        
         let result = delegate.check(login: login, password: password)
-        
-        
         
         if result {
             isLogin = true
@@ -187,11 +214,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             alertVC.addAction(action)
             self.present(alertVC, animated: true, completion: nil)
         }
-        
-        
-        
-        
-        
         
         //#if DEBUG
         //
@@ -230,7 +252,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //            navigationController?.setViewControllers([profileVC], animated: true)
         //        }
         
+   }
+    
+    @objc private func brutPasswordButtonPressed() {
         
+        let passwordLengh = 4
+        
+        // блокируем кнопку
+        self.brutPasswordButton.isEnabled = false
+        self.activityIndicator.startAnimating()
+        
+        DispatchQueue.global().async {
+            
+            // генерируем пароль
+            GeneratePassword.shared.generatePass(count: passwordLengh)
+            print(GeneratePassword.shared.generatedPassword)
+            
+            // брутфорс пароля
+            let passwordsArray = Brutforce.shared.generate(length: passwordLengh)
+            for password in passwordsArray {
+                if password == GeneratePassword.shared.generatedPassword {
+                    
+                    DispatchQueue.main.async {
+                        self.passwordTextField.text = password
+                        self.passwordTextField.isSecureTextEntry = false
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.isHidden = true
+                        self.brutPasswordButton.isEnabled = true
+                    }
+                    print("пароль найден - \(password)")
+                    break
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

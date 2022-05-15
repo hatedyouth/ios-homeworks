@@ -6,6 +6,13 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     static let identifire = "ProfileTableHeaderView"
     var statusText : String = ""
     
+    static var timerLabel: UILabel = {
+        let timerLabel = UILabel()
+        timerLabel.text = "30"
+        return timerLabel
+    }()
+    
+    
     let hipsterCatLabel : UILabel = {
         let hipsterCatLabel = UILabel()
         hipsterCatLabel.font =
@@ -84,40 +91,17 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }()
     
     func addSubviews() {
-        contentView.addSubviews (hipsterCatLabel, statusLabel, statusButton,  statusTextField, animatedView, animatedButton, avatarImageView, animatedButton)
+        contentView.addSubviews (hipsterCatLabel, statusLabel, statusButton,  statusTextField, animatedView, animatedButton, avatarImageView, animatedButton, ProfileTableHeaderView.timerLabel)
     }
     
     func setupConstraints() {
-        //        NSLayoutConstraint.activate([
-        //            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        //            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-        //            avatarImageView.heightAnchor.constraint(equalToConstant: 140),
-        //            avatarImageView.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: 166),
-        //
-        //            hipsterCatLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-        //            hipsterCatLabel.heightAnchor.constraint(equalToConstant: 25),
-        //            hipsterCatLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
-        //
-        //
-        //            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        //            statusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
-        //            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-        //            statusButton.heightAnchor.constraint(equalToConstant: 50),
-        //
-        //            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
-        //            statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -64),
-        //            statusLabel.heightAnchor.constraint(equalToConstant: 22),
-        //
-        //            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-        //            statusTextField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16),
-        //            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 40),
-        //            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18),
-        //
-        //            animatedButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-        //            animatedButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-        //            animatedButton.heightAnchor.constraint(equalToConstant: 20),
-        //            animatedButton.widthAnchor.constraint(equalToConstant: 20)
-        //        ])
+        
+        ProfileTableHeaderView.timerLabel.snp.makeConstraints { constraint in
+            constraint.top.equalTo(contentView.snp.top).offset(20)
+            constraint.right.equalTo(contentView.snp.right).offset(-30)
+        }
+        
+        
         avatarImageView.snp.makeConstraints { constraint in
             constraint.left.top.equalToSuperview().inset(16)
             constraint.width.height.equalTo(140)

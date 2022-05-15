@@ -5,19 +5,8 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
-    //    var userService: UserService
-    //    var userFullName: String?
+    
     var login: String?
-    
-    //    init(userService: UserService, fullUserName: String) {
-    //        self.userService = userService
-    //        self.userFullName = fullUserName
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     static var  tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -29,16 +18,42 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifire)
         return tableView
     }()
+    
+    private func timer() {
+        var timerData = 30
+        ProfileTableHeaderView.timerLabel.text = "\(timerData)"
+        
+        DispatchQueue.global().async {
+            let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                timerData -= 1
+                DispatchQueue.main.async {
+                    ProfileTableHeaderView.timerLabel.text = "\(timerData)"
+                }
+                if timerData == -1 {
+                    timerData = 30
+                    DispatchQueue.main.async {
+                        ProfileTableHeaderView.timerLabel.text = "\(timerData)"
+                    }
+                    print("обновление данных")
+                    DispatchQueue.main.async {
+                        self.updatePostArray()
+                    }
+                }
+            }
+            RunLoop.current.add(timer, forMode: .common)
+            RunLoop.current.run()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
-        
-        
         view.addSubview(ProfileViewController.tableView)
         ProfileViewController.tableView.dataSource = self
         ProfileViewController.tableView.delegate = self
         setupConstraints()
+        ProfileViewController.tableView.refreshControl = UIRefreshControl()
+        ProfileViewController.tableView.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
+        timer()
     }
     func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -50,6 +65,15 @@ class ProfileViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    @objc func updatePostArray() {
+        print("Количество постов в ленте до обновления данных - \(postArray.count)")
+        postArray.append(post1)
+        print("Количество постов в ленте после обновления данных - \(postArray.count)")
+        ProfileViewController.tableView.reloadData()
+        ProfileViewController.tableView.refreshControl?.endRefreshing()
+        print("данные успешно обновлены")
     }
     
 }
@@ -90,16 +114,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileTableHeaderView.identifire) as! ProfileTableHeaderView
             
             return headerView
-            
-            
-            
-            //            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileTableHeaderView.identifire) as! ProfileTableHeaderView
-            //            let currentUser = userService.getUser(userFullName: userFullName!)
-            //            headerView.hipsterCatLabel.text = currentUser?.userFullName
-            //            headerView.avatarImageView.image = currentUser?.userAvatar
-            //            headerView.statusLabel.text = currentUser?.userStatus
-            
-            
         } else { return nil }
     }
     

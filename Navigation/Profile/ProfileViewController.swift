@@ -19,31 +19,29 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
+    
+    private var timeInterval: TimeInterval = 30
+    private var myTimer : Timer?
+    
     private func timer() {
         var timerData = 30
         ProfileTableHeaderView.timerLabel.text = "\(timerData)"
         
-        DispatchQueue.global().async {
-            let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                timerData -= 1
-                DispatchQueue.main.async {
-                    ProfileTableHeaderView.timerLabel.text = "\(timerData)"
-                }
-                if timerData == -1 {
-                    timerData = 30
-                    DispatchQueue.main.async {
-                        ProfileTableHeaderView.timerLabel.text = "\(timerData)"
-                    }
-                    print("обновление данных")
-                    DispatchQueue.main.async {
-                        self.updatePostArray()
-                    }
-                }
-            }
-            RunLoop.current.add(timer, forMode: .common)
-            RunLoop.current.run()
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            timerData -= 1
+            
+            
+            if self.timeInterval == 0 {
+                self.timeInterval = 30
+                ProfileTableHeaderView.timerLabel.text = "\(self.timeInterval)"
+                self.updatePostArray()
+            } else { ProfileTableHeaderView.timerLabel.text = "\(self.timeInterval)"}
         }
+        RunLoop.current.add(timer, forMode: .common)
+        RunLoop.current.run()
     }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -54,6 +52,12 @@ class ProfileViewController: UIViewController {
         ProfileViewController.tableView.refreshControl = UIRefreshControl()
         ProfileViewController.tableView.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
         timer()
+    }
+   
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.myTimer?.invalidate()
+        self.myTimer = nil
     }
     func setupConstraints() {
         NSLayoutConstraint.activate([

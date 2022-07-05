@@ -26,12 +26,8 @@ class ProfileViewController: UIViewController {
     private func timer() {
         var timerData = 30
         ProfileTableHeaderView.timerLabel.text = "\(timerData)"
-        
-        
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             timerData -= 1
-            
-            
             if self.timeInterval == 0 {
                 self.timeInterval = 30
                 ProfileTableHeaderView.timerLabel.text = "\(self.timeInterval)"
@@ -40,8 +36,9 @@ class ProfileViewController: UIViewController {
         }
         RunLoop.current.add(timer, forMode: .common)
         RunLoop.current.run()
+        self.myTimer = timer
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -53,7 +50,7 @@ class ProfileViewController: UIViewController {
         ProfileViewController.tableView.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
         timer()
     }
-   
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.myTimer?.invalidate()
@@ -99,7 +96,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1{
-            let cell = ProfileViewController.tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             cell.configureCell(title: postArray[indexPath.row].author,
                                image: postArray[indexPath.row].image,
                                description: postArray[indexPath.row].description,
@@ -107,7 +104,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                                views: postArray[indexPath.row].views)
             return cell
         } else {
-            let cell = ProfileViewController.tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifire, for: indexPath) as! PhotosTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifire, for: indexPath) as! PhotosTableViewCell
             return cell
         }
     }

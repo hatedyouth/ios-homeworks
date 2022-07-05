@@ -34,7 +34,7 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         self.title = "Photo Gallery"
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: NSNotification.Name("notification"), object: nil)
-    
+        
         facade.subscribe(self)
         facade.addImagesWithTimer(time: 0.3, repeat: 20, userImages: photosArray)
     }
@@ -82,10 +82,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
 
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
-        newPhotoArray = []
-        for image in images {
-            newPhotoArray.append(image)
-        }
+        newPhotoArray = images
         photosCollection.reloadData()
     }
 }

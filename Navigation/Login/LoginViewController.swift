@@ -30,7 +30,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return activityIndicator
     }()
     
-   private lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -124,7 +124,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         addSubviews()
         setupConstraints()
     }
@@ -182,7 +182,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.loginButton.setBackgroundImage(image.image(alpha: 1), for: .normal)
             }
         }
-        
         guard loginTextField.text?.isEmpty == false else {
             let alertVC = UIAlertController(title: "Error", message: "Enter Login!", preferredStyle: .alert)
             let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
@@ -200,13 +199,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let login = loginTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let delegate = delegate else { return }
-        
         let result = delegate.check(login: login, password: password)
         
         if result {
             isLogin = true
+            print("переходим в Profile")
             let profileVC = ProfileViewController()
-            navigationController?.pushViewController(profileVC, animated: false)
+            navigationController?.pushViewController(profileVC, animated: true)
         } else {
             isLogin = false
             let alertVC = UIAlertController(title: "Ошибка", message: "Такого пользователя не существует", preferredStyle: .alert)
@@ -214,44 +213,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             alertVC.addAction(action)
             self.present(alertVC, animated: true, completion: nil)
         }
-        
-        //#if DEBUG
-        //
-        //        let currentUserService = TestUserService()
-        //        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
-        //        profileVC.userService = currentUserService
-        //        if loginTextField.text == currentUserService.user.userFullName {
-        //            isLogin = true
-        //            navigationController?.pushViewController(profileVC, animated: false)
-        //        } else {
-        //            let alert = UIAlertController(title: "DEBUG mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
-        //            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-        //                NSLog("The \"OK\" alert occured.")
-        //            }))
-        //            self.present(alert, animated: true, completion: nil)
-        //        }
-        //        #else
-        //
-        //        let currentUserService = CurrentUserService()
-        //        let profileVC = ProfileViewController(userService: currentUserService, fullUserName: loginTextField.text!)
-        //        profileVC.userService = currentUserService
-        //        if loginTextField.text == currentUserService.user.userFullName {
-        //            isLogin = true
-        //            navigationController?.pushViewController(profileVC, animated: false)
-        //        } else {
-        //            let alert = UIAlertController(title: "RELEASE mode", message: "Такой пользователь не зарегистрирован!", preferredStyle: .alert)
-        //            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-        //                NSLog("The \"OK\" alert occured.")
-        //            }))
-        //            self.present(alert, animated: true, completion: nil)
-        //        }
-        //
-        //        #endif
-        //
-        //        if isLogin {
-        //            navigationController?.setViewControllers([profileVC], animated: true)
-        //        }
-        
    }
     
     @objc private func brutPasswordButtonPressed() {

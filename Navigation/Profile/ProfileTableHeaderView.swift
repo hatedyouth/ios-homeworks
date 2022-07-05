@@ -49,10 +49,10 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         statusButton.layer.shouldRasterize = true
         statusButton.layer.rasterizationScale = UIScreen.main.scale
         statusButton.addTarget(
-            self, action: #selector(buttonAction),
+            ProfileTableHeaderView.self, action: #selector(buttonAction),
             for: .touchUpInside)
         statusButton.addTarget(
-            self, action: #selector(statusChange),
+            ProfileTableHeaderView.self, action: #selector(statusChange),
             for: .editingChanged)
         statusButton.toAutoLayout()
         return statusButton

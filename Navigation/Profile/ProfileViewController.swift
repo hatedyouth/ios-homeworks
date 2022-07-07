@@ -5,8 +5,20 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
-    
     var login: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        view.addSubview(ProfileViewController.tableView)
+        ProfileViewController.tableView.dataSource = self
+        ProfileViewController.tableView.delegate = self
+        setupConstraints()
+        ProfileViewController.tableView.refreshControl = UIRefreshControl()
+        ProfileViewController.tableView.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
+        timer()
+    }
+    
     
     static var  tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -20,36 +32,25 @@ class ProfileViewController: UIViewController {
     }()
     
     
-    private var timeInterval: TimeInterval = 30
+    private var timeInterval: TimeInterval = 20
     private var myTimer : Timer?
     
     private func timer() {
-        var timerData = 30
-        ProfileTableHeaderView.timerLabel.text = "\(timerData)"
+        ProfileTableHeaderView.timerLabel.text = "\(self.timeInterval)"
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            timerData -= 1
+            self.timeInterval -= 1
+            
             if self.timeInterval == 0 {
-                self.timeInterval = 30
+                self.timeInterval = 20
                 ProfileTableHeaderView.timerLabel.text = "\(self.timeInterval)"
                 self.updatePostArray()
             } else { ProfileTableHeaderView.timerLabel.text = "\(self.timeInterval)"}
         }
         RunLoop.current.add(timer, forMode: .common)
-        RunLoop.current.run()
         self.myTimer = timer
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        view.addSubview(ProfileViewController.tableView)
-        ProfileViewController.tableView.dataSource = self
-        ProfileViewController.tableView.delegate = self
-        setupConstraints()
-        ProfileViewController.tableView.refreshControl = UIRefreshControl()
-        ProfileViewController.tableView.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
-        timer()
-    }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

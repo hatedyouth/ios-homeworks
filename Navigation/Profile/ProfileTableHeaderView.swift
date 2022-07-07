@@ -8,7 +8,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     static var timerLabel: UILabel = {
         let timerLabel = UILabel()
-        timerLabel.text = "30"
+        timerLabel.text = "20"
         return timerLabel
     }()
     

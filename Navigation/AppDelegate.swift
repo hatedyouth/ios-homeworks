@@ -8,6 +8,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
+        let url = AppConfiguration.randomURL()
+        print(url)
+        NetworkManager.shared.getData(url: url)
+        
+        
         let tabbarController = UITabBarController ()
         let feedItem = UITabBarItem()
         feedItem.title = "Лента новостей"

@@ -18,7 +18,7 @@ class InfoViewController: UIViewController {
     var personNameTable: UITableView = {
         let personNameTable = UITableView()
         personNameTable.toAutoLayout()
-        personNameTable.backgroundColor = .lightGray
+        personNameTable.backgroundColor = .darkGray
         return personNameTable
     }()
     

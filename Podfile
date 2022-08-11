@@ -6,9 +6,8 @@ target 'Navigation' do
   use_frameworks!
   
   pod 'SnapKit'
-  
-  # Pods for Navigation
-
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 end
 
 target 'Navigation copy' do
@@ -27,3 +26,9 @@ target 'StorageService' do
   # Pods for StorageService
 
 end
+
+
+
+
+
+

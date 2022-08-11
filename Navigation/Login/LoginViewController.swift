@@ -1,10 +1,44 @@
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var isLogin: Bool = false
     var delegate: LoginViewControllerDelegate?
+    
+    static var signInError: String?
+    static var logInError: String?
+    
+    @objc func logInError() {
+        if let logInError = LoginViewController.logInError {
+            let alertVC = UIAlertController(title: "Ошибка", message: "\(String(describing: logInError))", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func logInSuccess() {
+        let profileVC = ProfileViewController()
+        self.navigationController?.pushViewController(profileVC, animated: false)
+    }
+    
+    @objc func signInError() {
+        if let signInError = LoginViewController.signInError {
+            let alertVC = UIAlertController(title: "Ошибка", message: "\(String(describing: signInError))", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func signInSuccess() {
+        let alertVC = UIAlertController(title: "Поздравляем!", message: "Аккаунт успешно зарегистрирован", preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+        alertVC.addAction(action)
+        self.present(alertVC, animated: true, completion: nil)
+    }
     
     private lazy var brutPasswordButton: UIButton = {
         let brutPasswordButton = UIButton()
@@ -71,6 +105,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return uiButton
     }()
     
+    private lazy var signInButton: UIButton = {
+        let signInButton = UIButton()
+        signInButton.toAutoLayout()
+        if let image = UIImage(named: "blue_pixel") {
+            signInButton.setBackgroundImage(image.image(alpha: 1), for: .normal)
+            signInButton.setBackgroundImage(image.image(alpha: 0.1), for: .selected)
+            signInButton.setBackgroundImage(image.image(alpha: 0.1), for: .highlighted)
+            signInButton.setBackgroundImage(image.image(alpha: 0.1), for: .disabled)
+            signInButton.setBackgroundImage(image.image(alpha: 0.1), for: .reserved)
+            signInButton.setBackgroundImage(image.image(alpha: 0.1), for: .focused)
+            signInButton.setBackgroundImage(image.image(alpha: 0.1), for: .application)
+            
+        }
+        
+        signInButton.setTitle("Sign in", for: .normal)
+        signInButton.setTitleColor(.white, for: .normal)
+        signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
+        signInButton.layer.cornerRadius = 10
+        signInButton.clipsToBounds = true
+        return signInButton
+    }()
+    
     private lazy var loginStackView: UIStackView = {
         let loginStackView = UIStackView()
         loginStackView.toAutoLayout()
@@ -127,12 +183,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.isHidden = true
         addSubviews()
         setupConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.signInError), name: Notification.Name("signInError"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.signInSuccess), name: Notification.Name("signInSuccess"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.logInError), name: Notification.Name("logInError"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.logInSuccess), name: Notification.Name("logInSuccess"), object: nil)
+        
     }
     
     func addSubviews(){
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(vkImageView, loginStackView, loginButton, brutPasswordButton, activityIndicator)
+        contentView.addSubviews(vkImageView, loginStackView, loginButton, brutPasswordButton, activityIndicator, signInButton)
         loginStackView.addArrangedSubviews(loginTextField, passwordTextField)
     }
     func setupConstraints() {
@@ -172,6 +235,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             activityIndicator.centerXAnchor.constraint(equalTo: brutPasswordButton.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: brutPasswordButton.centerYAnchor),
             
+            signInButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            signInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            signInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            signInButton.heightAnchor.constraint(equalToConstant: 50),
+        
+        
+        
         ])}
     
     
@@ -213,7 +283,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             alertVC.addAction(action)
             self.present(alertVC, animated: true, completion: nil)
         }
-   }
+    }
+    
+    @objc private func signInButtonPressed() {
+        
+        
+        guard loginTextField.text?.isEmpty == false else {
+            let alertVC = UIAlertController(title: "Ошибка", message: "Введите логин!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+            return }
+        
+        guard passwordTextField.text?.isEmpty == false else {
+            let alertVC = UIAlertController(title: "Ошибка", message: "Введите пароль!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+            return }
+        
+        guard let login = loginTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let delegate = delegate else { return }
+        
+        delegate.signIn(login: login, password: password)
+        
+    }
     
     @objc private func brutPasswordButtonPressed() {
         
